@@ -54,7 +54,7 @@ int	main(int ac, char **av)
     {
         int y = 0;
         int x = 0;
-       /// mlx_key_hook(all_data.lib.win, keyboard_events, &all_data);
+       mlx_key_hook(all_data.lib.win, keyboard_events, &all_data);
         //mlx_mouse_hook(all_data.lib.win, mouse_events, &all_data);
         paint_background(x, y, all_data.lib);
         drawCircle(X_WIDTH, Y_HEIGHT, 100, all_data.lib);

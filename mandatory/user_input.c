@@ -11,14 +11,16 @@
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+#include <stdio.h>
 
 int	keyboard_events(int keycode, t_data *data)
 {
-	if (keycode == XK_Escape)
-		destroying_window(&data->lib);
+	printf("key --> %d", keycode);	
+	if (keycode == ESC)
+		mlx_clear_window(data.lib.mlx, data.lib.win);
 	return (SUCCESS);
 }
-
+/*
 int	mouse_events(int event, int x, int y, t_data *data)
 {
 	(void)x;
@@ -42,3 +44,4 @@ int	mouse_events(int event, int x, int y, t_data *data)
 	render_fractal(data);
 	return (SUCCESS);
 }
+*/

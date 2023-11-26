@@ -1,7 +1,8 @@
 NAME 		=	fractol
 
 MANDATORY	=	main.c \
-				draw_funcs.c
+				draw_funcs.c \
+				user_input.c 
 
 BONUS		=	main_bonus.c set_fractal_bonus.c \
 				errors_bonus.c events_bonus.c \

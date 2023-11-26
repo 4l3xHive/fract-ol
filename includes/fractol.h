@@ -26,6 +26,7 @@
 # define Y_HEIGHT		1080
 # define SCROLL_UP 		5
 # define SCROLL_DOWN 	4
+# define ESC 			53
 
 // MATH DATA
 typedef struct s_math

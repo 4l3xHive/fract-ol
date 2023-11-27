@@ -10,19 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 
-void	my_mlx_pixel_put(t_lib *data, int x, int y, int color)
+void my_mlx_pixel_put(t_lib *data, int x, int y, int color)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+    char *dst;
+    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+    *(unsigned int *)dst = color;
 }
 
-int paint_background(int x, int y, t_lib img){
+int paint_background(t_lib img)
+{
+    int x, y;
 
-    while(1) 
+    x =0,y=0;
+    while (1)
     {
         my_mlx_pixel_put(&img, x, y, 0x00FF0000 | 0x000000FF);
         x++;
@@ -35,19 +37,22 @@ int paint_background(int x, int y, t_lib img){
             break;
         x++;
     }
-return (0);
+    return (0);
 }
 
 void drawCircle(int screen_width, int screen_height, int radius, t_lib img)
 {
-    int center_x = screen_width / 2;
-    int center_y = screen_height / 2;
+int center_x = screen_width / 2;
+int center_y = screen_height / 2;
 
-    for (int x = 0; x < screen_width; x++) {
-        for (int y = 0; y < screen_height; y++) {
+    for (int x = 0; x < screen_width; x++)
+    {
+        for (int y = 0; y < screen_height; y++)
+        {
             double distance = sqrt(pow(x - center_x, 2) + pow(y - center_y, 2));
-            if (fabs(distance - radius) < 0.5) {
-                 my_mlx_pixel_put(&img, x, y, 0x0000f0);
+            if (fabs(distance - radius) < 0.5)
+            {
+                my_mlx_pixel_put(&img, x, y, 0x0000f0);
             }
         }
     }

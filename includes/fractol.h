@@ -14,19 +14,25 @@
 # define FRACTOL_H
 
 # include <math.h>
-# include <mlx.h>
-//linux 
-//# include <X11/keysym.h>
 # include "../libftprintf/mandatory/ft_printf.h"
-# include <stdio.h>\
+# include "../libftprintf/libft/libft.h"
 
 # define ERROR			1
 # define SUCCESS 		0
 # define X_WIDTH 		1920
 # define Y_HEIGHT		1080
-# define SCROLL_UP 		5
-# define SCROLL_DOWN 	4
-# define ESC 			53
+#ifdef __linux__
+# include "../minilibx-linux/mlx.h"
+# define ESC  	65307
+# define UP   	65362
+# define DOWN 	65364
+# define LEFT 	65361
+# define RIGHT	65363
+# define SCROLL_UP 		4
+# define SCROLL_DOWN 	5
+#else
+# include <mlx.h>
+#endif
 
 // MATH DATA
 typedef struct s_math
@@ -75,12 +81,14 @@ typedef struct s_data
 
 
 //DRAWING
-int 	paint_background(int x, int y, t_lib img);
+int 	paint_background(t_lib img);
 void 	drawCircle(int screen_width, int screen_height, int radius, t_lib img);
 void	my_mlx_pixel_put(t_lib *data, int x, int y, int color);
 
 // USERINPUTS
-int	mouse_events(int event, int x, int y, t_data *data);
-int	keyboard_events(int keycode, t_data *data);
+int		mouse_events(int event, int x, int y, t_data *data);
+int		keyboard_events(int keycode, t_data *data);
+void	clean_exit(t_data *all_data);
+void	init_lib_data(t_data *all_data);
 
 #endif

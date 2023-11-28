@@ -8,7 +8,7 @@ LIBS		=	./libftprintf/libftprintf.a ./libftprintf/libft/libft.a
 MANDATORY	=	main.c \
 				draw.c \
 				user_input.c \
-				inits_exit.c \
+				render_exit.c \
 
 BONUS		=	main_bonus.c set_fractal_bonus.c \
 				errors_bonus.c events_bonus.c \

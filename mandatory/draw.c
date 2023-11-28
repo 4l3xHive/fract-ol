@@ -19,6 +19,11 @@ void my_mlx_pixel_put(t_lib *data, int x, int y, int color)
     *(unsigned int *)dst = color;
 }
 
+
+
+
+
+// RANNDOM --
 int paint_background(t_lib img)
 {
     int x, y;

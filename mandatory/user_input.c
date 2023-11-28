@@ -11,21 +11,21 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
+// CALLBACKS CHECKER
 int keyboard_events(int keycode, t_data *data)
 {
-	ft_printf("here i an keyboard \n");
+	ft_printf("here %d an keyboard \n", keycode);
 	if (keycode == ESC)
 	{
-		clean_exit(data);
+		clean_exit(data, NULL);
 	}
 	return (SUCCESS);
 }
 
 int	mouse_events(int event, int x, int y, t_data *data)
 {
-	ft_printf("here i an mouseeeee \n");
+	ft_printf("here %d an mouseeeee \n", event);
 	(void)x;
 	(void)y;
 	if (event != SCROLL_DOWN && event != SCROLL_UP)
@@ -44,6 +44,8 @@ int	mouse_events(int event, int x, int y, t_data *data)
 		data->math.y_max *= 0.885;
 		data->math.y_min *= 0.885;
 	}
-	//render_fractal(data);
+	render_fractal(data);
 	return (SUCCESS);
 }
+
+

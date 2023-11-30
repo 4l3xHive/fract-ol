@@ -107,6 +107,17 @@ typedef struct s_data
 {
 	t_lib		lib;
 	t_math		math;
+	double		x;
+	double		y;
+	double		cy;
+	double 		cx;
+	double		zx;
+	double		zy;
+	double		zoom;
+	long		max_iterations = SIZE_MAX;
+	int			color = RED;
+	double		offset_x;
+	double		offset_y;
 
 }				t_data;
 

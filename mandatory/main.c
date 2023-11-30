@@ -23,8 +23,8 @@ void		get_fractol(int ac, char **av, t_data *all_data)
 		all_data->lib.fractol = MANDEL;
 	else if (!(ft_strncmp(av[1], "burningship", 12)))
 		all_data->lib.fractol = SHIP;
-	clean_exit(NULL, "Wrong argument enter valid program\n\
-	[1] julia\n\t[2] mandelbrot\n\t[3] burningship\n");
+	/*clean_exit(NULL, "Wrong argument enter valid program\n\
+	[1] julia\n\t[2] mandelbrot\n\t[3] burningship\n");*/
 }
 
 int	main(int ac, char **av)

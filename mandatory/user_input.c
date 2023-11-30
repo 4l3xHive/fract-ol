@@ -12,6 +12,11 @@
 
 #include "fractol.h"
 
+static double	ft_interpolate(double min, double max, double inter)
+{
+	return (min + ((max - min) * inter));
+}
+
 // CALLBACKS CHECKER
 int keyboard_events(int keycode, t_data *data)
 {
@@ -23,29 +28,28 @@ int keyboard_events(int keycode, t_data *data)
 	return (SUCCESS);
 }
 
-int	mouse_events(int event, int x, int y, t_data *data)
+int	mouse_events(int event, int x, int y, t_data *all_data)
 {
-	ft_printf("here %d an mouseeeee \n", event);
-	(void)x;
-	(void)y;
-	if (event != SCROLL_DOWN && event != SCROLL_UP)
-		return (ERROR);
-	if (event == SCROLL_UP)
+	t_complex	mouse;
+	double		zoom;
+	double		inter;
+
+	if (event == SCROLL_UP || event == SCROLL_DOWN)
 	{
-		data->math.x_max *= 1.115;
-		data->math.x_min *= 1.115;
-		data->math.y_max *= 1.115;
-		data->math.y_min *= 1.115;
+		mouse.r = (double)x / (all_data->calc.size_x / (all_data->calc.max.r - all_data->calc.min.r))
+			+ all_data->calc.min.r;
+		mouse.i = (double)y / (all_data->calc.size_y / (all_data->calc.max.i - all_data->calc.min.i))
+			* -1 + all_data->calc.max.i;
+		if (event == SCROLL_UP)
+			zoom = 0.70;
+		else
+			zoom = 1.30;
+		inter = 1.0 / zoom;
+		all_data->calc.min.r = ft_interpolate(mouse.r, all_data->calc.min.r, inter);
+		all_data->calc.min.i = ft_interpolate(mouse.i, all_data->calc.min.i, inter);
+		all_data->calc.max.r = ft_interpolate(mouse.r, all_data->calc.max.r, inter);
+		all_data->calc.max.i = ft_interpolate(mouse.i, all_data->calc.max.i, inter);
+		draw_fractal(all_data);
 	}
-	else if (event == SCROLL_DOWN)
-	{
-		data->math.x_max *= 0.885;
-		data->math.x_min *= 0.885;
-		data->math.y_max *= 0.885;
-		data->math.y_min *= 0.885;
-	}
-	draw_fractal(data, data->math.x_max, data->math.y_max);
 	return (SUCCESS);
 }
-
-

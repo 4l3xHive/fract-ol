@@ -23,9 +23,34 @@ void		get_fractol(int ac, char **av, t_data *all_data)
 		all_data->lib.fractol = MANDEL;
 	else if (!(ft_strncmp(av[1], "burningship", 12)))
 		all_data->lib.fractol = SHIP;
-	/*clean_exit(NULL, "Wrong argument enter valid program\n\
-	[1] julia\n\t[2] mandelbrot\n\t[3] burningship\n");*/
+	else
+		clean_exit(NULL, "Wrong argument enter valid program\n\
+	[1] julia\n\t[2] mandelbrot\n\t[3] burningship\n");
 }
+
+// INIT THE MLX LIBRARY
+void init_lib_mlx(t_data *all_data)
+{
+	if (!(all_data->lib.mlx = mlx_init()))
+		clean_exit(all_data, "Failed to init mlx!");
+	if (!(all_data->lib.win = mlx_new_window(all_data->lib.mlx, X_WIDTH, Y_HEIGHT, "Fract-olli")))
+		clean_exit(all_data, "Error Creating Window!");
+	if (!(all_data->lib.img = mlx_new_image(all_data->lib.mlx, X_WIDTH, Y_HEIGHT)))
+		clean_exit(all_data, "Error Render Creating Image!");
+	all_data->lib.addr = mlx_get_data_addr(all_data->lib.img, &all_data->lib.bits_per_pixel, \
+	&all_data->lib.line_length, &all_data->lib.endian);
+	if (all_data->lib.addr == NULL)
+		clean_exit(all_data, "Error Render Saving Data!");
+}
+
+void	init_math(t_data *all_data)
+{
+	all_data->color = CYAN;
+	all_data->max_iterations = 30;
+	all_data->math.julia_x = 0;
+	all_data->math.julia_y = 0;
+}
+
 
 int	main(int ac, char **av)
 {
@@ -33,14 +58,12 @@ int	main(int ac, char **av)
 
 	// INITS
 	get_fractol(ac, av, &all_data);
-		clean_exit(&all_data, NULL);
-	if (!(all_data.lib.mlx = mlx_init()))
-		clean_exit(&all_data, "Failed to init mlx!");
-	if (!(all_data.lib.win = mlx_new_window(all_data.lib.mlx, X_WIDTH, Y_HEIGHT, "Fract-olli")))
-		clean_exit(&all_data, "Error Creating Window!");
+	init_lib_mlx(&all_data);
+	init_math(&all_data);
 
-	// START THE FRACTAL
-	render_fractal(&all_data);
+	all_data.color = CYAN;
+	all_data.max_iterations = 30;
+	draw_fractal(&all_data, 0.1, 0.2);
 	mlx_key_hook(all_data.lib.win, keyboard_events, &all_data);
 	mlx_mouse_hook(all_data.lib.win, mouse_events, &all_data);
 	mlx_loop(all_data.lib.mlx);

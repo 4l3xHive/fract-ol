@@ -67,28 +67,11 @@ typedef enum
 }e_f_choice;
 
 
-// MATH DATA
-typedef struct s_math
+typedef struct s_complex
 {
-	int		pixel_x; 
-	int		pixel_y;
-	double	complex_real;
-	double	complex_img;
-	double	x_min;
-	double	x_max;
-	double	y_min;
-	double	y_max;
-	double	x_square;
-	double	y_square;
-	double	number_real;
-	double	number_img;
-	double	julia_x;
-	double	julia_y;
-	int		interations;
-	int		max_interation;
-	void	(*fractal)(struct s_math *math);
-
-}	t_math;
+	double		r;
+	double		i;
+}				t_complex;
 
 // MINILIBX DATA
 typedef struct s_lib
@@ -104,22 +87,23 @@ typedef struct s_lib
 
 }				t_lib;
 
+typedef struct s_calc
+{
+	long		ite;
+	t_complex	min;
+	t_complex	max;
+	t_complex	factor;
+	t_complex	c;
+	t_complex	k;
+	int			size_x;
+	int			size_y;
 
-typedef struct s_data
+}t_calc;
+
+typedef struct s_data 
 {
 	t_lib		lib;
-	t_math		math;
-	double		x;
-	double		y;
-	double		cy;
-	double 		cx;
-	double		zx;
-	double		zy;
-	double		zoom;
-	int			max_iterations;
-	int			color;
-	double		offset_x;
-	double		offset_y;
+	t_calc		calc;
 
 }				t_data;
 
@@ -137,6 +121,12 @@ void	clean_exit(t_data *all_data, const char *error_msg);
 
 //RENDER
 //void	render_fractal(t_data *all_data);
-int 	draw_fractal(t_data *all_data, double cx, double cy);
+int 	draw_fractal(t_data *all_data);
+
+
+
+// INITS
+void	init_lib_mlx(t_data *all_data);
+void	init_complex(double real, double imaginary);
 
 #endif

@@ -30,40 +30,15 @@ void	clean_exit(t_data *all_data, const char *error_msg)
 	exit(0);
 }
 
-void calculate_julia(t_data *all_data, double cx, double cy)
-{
-	int  i;
-	double tmp;
 
-	all_data->cx = cx;
-	all_data->cy = cy;
-	all_data->zx = all_data->x / all_data->zoom + all_data->offset_x;
-	all_data->zy = all_data->y / all_data->zoom + all_data->offset_y;
-	i = 0;
-	while (++i < all_data->max_iterations)
-	{
-		tmp = all_data->zx;
-		all_data->zx = all_data->zx * all_data->zx - all_data->zy * all_data->zy
-		+ all_data->cx;
-		all_data->zy = 2 * all_data->zy * tmp + all_data->cy;
-		if (all_data->zx * all_data->zx + all_data->zy
-			* all_data->zy >= __DBL_MAX__)
-			break ;
-	}
-	if (i == all_data->max_iterations)
-		my_mlx_pixel_put(&all_data->lib, all_data->x, all_data->y, RED);
-	else
-		my_mlx_pixel_put(&all_data->lib, all_data->x, all_data->y, (GREEN));
-}
-
-
-int draw_fractal(t_data *all_data, double cx, double cy)
+int draw_fractal(t_data *all_data)
 {
 	mlx_clear_window(all_data->lib.mlx, all_data->lib.win);
 	all_data->x = 0;
 	all_data->y = 0;
 	while (all_data->x < X_WIDTH)
 	{
+		all_data->y = 0;
 		while (all_data->y < Y_HEIGHT)
 		{
 			if (all_data->lib.fractol == JULIA)
@@ -75,7 +50,6 @@ int draw_fractal(t_data *all_data, double cx, double cy)
 			all_data->y++;
 		}
 		all_data->x++;
-		all_data->y = 0;
 	}
 	mlx_put_image_to_window(all_data->lib.mlx, all_data->lib.win, all_data->lib.img, 0, 0);
 	return (0);

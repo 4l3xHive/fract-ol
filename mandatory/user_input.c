@@ -44,7 +44,7 @@ int	mouse_events(int event, int x, int y, t_data *data)
 		data->math.y_max *= 0.885;
 		data->math.y_min *= 0.885;
 	}
-	render_fractal(data);
+	draw_fractal(data, data->math.x_max, data->math.y_max);
 	return (SUCCESS);
 }
 

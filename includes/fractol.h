@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <limits.h>
 
 //COLORS
 # define WHITE		0xFFFFFF
@@ -59,6 +60,7 @@
 
 typedef enum
 {
+	E_ERR,
     JULIA,
     MANDEL,
     SHIP
@@ -114,8 +116,8 @@ typedef struct s_data
 	double		zx;
 	double		zy;
 	double		zoom;
-	long		max_iterations = SIZE_MAX;
-	int			color = RED;
+	int			max_iterations;
+	int			color;
 	double		offset_x;
 	double		offset_y;
 
@@ -134,6 +136,7 @@ int		keyboard_events(int keycode, t_data *data);
 void	clean_exit(t_data *all_data, const char *error_msg);
 
 //RENDER
-void	render_fractal(t_data *all_data);
+//void	render_fractal(t_data *all_data);
+int 	draw_fractal(t_data *all_data, double cx, double cy);
 
 #endif

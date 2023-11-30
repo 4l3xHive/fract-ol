@@ -23,6 +23,14 @@ void my_mlx_pixel_put(t_lib *data, int x, int y, int color)
 
 
 
+
+
+
+
+
+
+
+
 // RANNDOM --
 int paint_background(t_lib img)
 {
@@ -47,8 +55,8 @@ int paint_background(t_lib img)
 
 void drawCircle(int screen_width, int screen_height, int radius, t_lib img)
 {
-int center_x = screen_width / 2;
-int center_y = screen_height / 2;
+    int center_x = screen_width / 2;
+    int center_y = screen_height / 2;
 
     for (int x = 0; x < screen_width; x++)
     {

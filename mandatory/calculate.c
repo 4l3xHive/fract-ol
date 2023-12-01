@@ -30,6 +30,46 @@ void	clean_exit(t_data *all_data, const char *error_msg)
 	exit(0);
 }
 
+int	ft_ints_to_int(int r, int g, int b)
+{
+	int	color;
+
+	color = r | g << 8 | b << 16;
+	return (color);
+}
+
+int	ft_red_to_black(int color)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = color & 0xFF;
+	g = color >> 8 & 0xFF;
+	b = color >> 16 & 0xFF;
+	if (r == 255 && g == 0 && b == 0)
+		return (0);
+	return (color);
+}
+
+int	ft_julia(t_data *all_data)
+{
+	t_complex	z;
+	int			i;
+
+	z.r = all_data->c.r;
+	z.i = all_data->c.i;
+	i = 0;
+	while (z.r * z.r + z.i * z.i < 4 && i < all_data->ite)
+	{
+		z = ft_init_complex(z.r * z.r - z.i * z.i + all_data->k.r,
+				2 * z.r * z.i + all_data->k.i);
+		i++;
+	}
+	return (ft_red_to_black(ft_ints_to_int(
+				255 - 255 * ((all_data->ite - i) * (all_data->ite - i))
+				% (all_data->ite * all_data->ite), 0, 0)));
+}
 
 int draw_fractal(t_data *all_data)
 {

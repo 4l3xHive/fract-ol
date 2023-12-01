@@ -19,54 +19,21 @@ void my_mlx_pixel_put(t_lib *data, int x, int y, int color)
     *(unsigned int *)dst = color;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-// RANNDOM --
-int paint_background(t_lib img)
+int	ft_julia(t_data *all_data)
 {
-    int x, y;
+	t_complex	z;
+	int			i;
 
-    x =0,y=0;
-    while (1)
-    {
-        my_mlx_pixel_put(&img, x, y, 0x00FF0000 | 0x000000FF);
-        x++;
-        if (x >= 1920)
-        {
-            x = 0;
-            y++;
-        }
-        if (y >= 1080)
-            break;
-        x++;
-    }
-    return (0);
-}
-
-void drawCircle(int screen_width, int screen_height, int radius, t_lib img)
-{
-    int center_x = screen_width / 2;
-    int center_y = screen_height / 2;
-
-    for (int x = 0; x < screen_width; x++)
-    {
-        for (int y = 0; y < screen_height; y++)
-        {
-            double distance = sqrt(pow(x - center_x, 2) + pow(y - center_y, 2));
-            if (fabs(distance - radius) < 0.5)
-            {
-                my_mlx_pixel_put(&img, x, y, 0x0000f0);
-            }
-        }
-    }
+	z.r = all_data->c.r;
+	z.i = all_data->c.i;
+	i = 0;
+	while (z.r * z.r + z.i * z.i < 4 && i < all_data->ite)
+	{
+		z = ft_init_complex(z.r * z.r - z.i * z.i + all_data->k.r,
+				2 * z.r * z.i + all_data->k.i);
+		i++;
+	}
+	return (ft_red_to_black(ft_ints_to_int(
+				255 - 255 * ((all_data->ite - i) * (all_data->ite - i))
+				% (all_data->ite * all_data->ite), 0, 0)));
 }

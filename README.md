@@ -10,3 +10,7 @@ https://github.com/Xyckens/fract-ol/tree/master
 
 THIS is the one
 https://github.com/tbottini/Fractol/tree/master/src
+
+
+
+https://github.com/Alexdelia/42-fract-ol/blob/main/srcs/main.c

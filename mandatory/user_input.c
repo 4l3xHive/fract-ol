@@ -49,7 +49,8 @@ int	mouse_events(int event, int x, int y, t_data *all_data)
 		all_data->calc.min.i = ft_interpolate(mouse.i, all_data->calc.min.i, inter);
 		all_data->calc.max.r = ft_interpolate(mouse.r, all_data->calc.max.r, inter);
 		all_data->calc.max.i = ft_interpolate(mouse.i, all_data->calc.max.i, inter);
-		draw_fractal(all_data);
+		printf("HELLO WORLD\n\n");
+		refresh(all_data);
 	}
 	return (SUCCESS);
 }

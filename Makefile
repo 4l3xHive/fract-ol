@@ -6,9 +6,11 @@ HEADER		=	-I./includes
 LIBS		=	./libftprintf/libftprintf.a ./libftprintf/libft/libft.a
 
 MANDATORY	=	main.c \
-				draw.c \
+				calculate.c \
 				user_input.c \
-				render_exit.c \
+				refresh.c \
+				inits.c \
+				
 
 BONUS		=	main_bonus.c set_fractal_bonus.c \
 				errors_bonus.c events_bonus.c \

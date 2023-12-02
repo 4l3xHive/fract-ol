@@ -52,10 +52,10 @@ int	main(int ac, char **av)
 
 	// INITS
 	get_fractol(ac, av, &all_data);
+	init_calc(&all_data.calc);
 	init_lib_mlx(&all_data);
-	init_math(&all_data);
-
-	draw_fractal(&all_data);
+	printf("HELLO\n\n");
+	refresh(&all_data);
 	mlx_loop(all_data.lib.mlx);
 	return (SUCCESS);
 }

@@ -44,6 +44,7 @@ void init_lib_mlx(t_data *all_data)
 		clean_exit(all_data, "Error Render Saving Data!");
 	if (!(all_data->lib.win = mlx_new_window(all_data->lib.mlx, X_WIDTH, Y_HEIGHT, "Fract-olli")))
 		clean_exit(all_data, "Error Creating Window!");
-	mlx_key_hook(all_data->lib.win, keyboard_events, &all_data);
-	mlx_mouse_hook(all_data->lib.win, mouse_events, &all_data);
+	mlx_key_hook(all_data->lib.win, keyboard_events, all_data);
+	mlx_mouse_hook(all_data->lib.win, mouse_events, all_data);
+	//mlx_hook(all_data->lib.win,4, 1L, mouse_events, all_data);
 }

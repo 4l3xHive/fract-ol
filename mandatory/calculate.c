@@ -12,26 +12,26 @@
 
 #include "fractol.h"
 
-void my_mlx_pixel_put(t_lib *data, int x, int y, int color)
+int ft_red_to_winered(int color)
 {
-    char *dst;
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int *)dst = color;
+    int r, g, b;
+
+    r = color & 0xFF;
+    g = (color >> 8) & 0xFF;
+    b = (color >> 16) & 0xFF;
+
+    if (r == 255 && g == 0 && b == 0)
+    {
+        // Change red to winered (dark red)
+        int winered = 128;  // Adjust the intensity as needed
+        return (winered << 16 | g << 8 | b);
+    }
+
+    // Return the original color if it's not red
+    return color;
 }
 
-int	ft_red_to_black(int color)
-{
-	int	r;
-	int	g;
-	int	b;
 
-	r = color & 0xFF;
-	g = color >> 8 & 0xFF;
-	b = color >> 16 & 0xFF;
-	if (r == 255 && g == 0 && b == 0)
-		return (0);
-	return (color);
-}
 
 int	ft_ints_to_int(int r, int g, int b)
 {
@@ -71,9 +71,20 @@ int	calc_julia(t_data *all_data)
 				2 * z.r * z.i + all_data->calc.k.i);
 		i++;
 	}
-	return (ft_red_to_black(ft_ints_to_int(
+	return (ft_red_to_winered(ft_ints_to_int(
 				255 - 255 * ((all_data->calc.ite - i) * (all_data->calc.ite - i))
 				% (all_data->calc.ite * all_data->calc.ite), 0, 0)));
 }
 
 
+
+
+
+
+// OLD
+void my_mlx_pixel_put(t_lib *data, int x, int y, int color)
+{
+    char *dst;
+    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+    *(unsigned int *)dst = color;
+}

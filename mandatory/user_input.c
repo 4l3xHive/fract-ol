@@ -40,7 +40,7 @@ int	mouse_events(int event, int x, int y, t_data *all_data)
 			+ all_data->calc.min.r;
 		mouse.i = (double)y / (all_data->calc.size_y / (all_data->calc.max.i - all_data->calc.min.i))
 			* -1 + all_data->calc.max.i;
-		if (event == SCROLL_UP)
+		if (event == SCROLL_DOWN)
 			zoom = 0.70;
 		else
 			zoom = 1.30;
@@ -49,7 +49,6 @@ int	mouse_events(int event, int x, int y, t_data *all_data)
 		all_data->calc.min.i = ft_interpolate(mouse.i, all_data->calc.min.i, inter);
 		all_data->calc.max.r = ft_interpolate(mouse.r, all_data->calc.max.r, inter);
 		all_data->calc.max.i = ft_interpolate(mouse.i, all_data->calc.max.i, inter);
-		printf("HELLO WORLD\n\n");
 		refresh(all_data);
 	}
 	return (SUCCESS);

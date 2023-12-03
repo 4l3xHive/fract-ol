@@ -20,10 +20,9 @@ static double	ft_interpolate(double min, double max, double inter)
 // CALLBACKS CHECKER
 int keyboard_events(int keycode, t_data *data)
 {
-	ft_printf("here %d an keyboard \n", keycode);
 	if (keycode == ESC)
 	{
-		clean_exit(data, NULL);
+		ft_clean_exit(data, NULL);
 	}
 	return (SUCCESS);
 }
@@ -49,7 +48,7 @@ int	mouse_events(int event, int x, int y, t_data *all_data)
 		all_data->calc.min.i = ft_interpolate(mouse.i, all_data->calc.min.i, inter);
 		all_data->calc.max.r = ft_interpolate(mouse.r, all_data->calc.max.r, inter);
 		all_data->calc.max.i = ft_interpolate(mouse.i, all_data->calc.max.i, inter);
-		refresh(all_data);
+		ft_refresh(all_data);
 	}
 	return (SUCCESS);
 }

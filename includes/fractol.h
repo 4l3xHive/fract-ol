@@ -21,11 +21,14 @@
 # include <errno.h>
 # include <limits.h>
 
-
+# define RED_BUFF 		"\033[1;31m%s\033[0m"
+# define GREEN_BUFF 	"\033[1;32m%s\033[0m"
 # define ERROR			1
 # define SUCCESS 		0
-# define X_WIDTH 		1920
-# define Y_HEIGHT		1080
+# define TRUE			1
+# define FALSE			0
+# define X_WIDTH 		1000
+# define Y_HEIGHT		1000
 # define SCROLL_UP 		4
 # define SCROLL_DOWN 	5
 
@@ -56,8 +59,9 @@ typedef enum
 	E_ERR,
     JULIA,
     MANDEL,
-    SHIP
-}e_f_choice;
+    SHIP,
+	TRICORN,
+}e_choice;
 
 
 typedef struct s_complex
@@ -100,29 +104,30 @@ typedef struct s_data
 
 }				t_data;
 
-
-
-//DRAWING
-int 	paint_background(t_lib img);
-void 	drawCircle(int screen_width, int screen_height, int radius, t_lib img);
-void	my_mlx_pixel_put(t_lib *data, int x, int y, int color);
-
-// USERINPUTS
-int		mouse_events(int event, int x, int y, t_data *data);
-int		keyboard_events(int keycode, t_data *data);
-void	clean_exit(t_data *all_data, const char *error_msg);
-
+// USERINPUTS CALLBACKS
+int			mouse_events(int event, int x, int y, t_data *data);
+int			keyboard_events(int keycode, t_data *data);
+int			ft_clean_exit(t_data *all_data, const char *error_msg);
+int			ft_minimize(t_data *all_data);
+int			ft_put_img_back(t_data *all_data);
 
 // INITS
-void		init_lib_mlx(t_data *all_data);
-t_complex	init_complex(double real, double imaginary);
-void		init_calc(t_calc *calc);
-
+void		ft_init_lib_mlx(t_data *all_data);
+t_complex	ft_init_complex(double real, double imaginary);
+void		ft_default_calc_init(t_calc *calc);
+void		ft_args_calc_init(int ac, char **av, t_data *all_data);
 // REFRESH
-int			refresh(t_data *all_data);
-
-// CALCULATIONS
-int			calc_julia(t_data *all_data);
-void		pixel_fix(t_lib *lib, int color, int index);
+int			ft_refresh(t_data *all_data);
+// ALGORITHMS / FRACTOLS
+int			ft_calc_julia(t_data *all_data);
+int			ft_calc_mandelbrot(t_data *all_data);
+int			ft_calc_tricorn(t_data *all_data);
+int			ft_calc_bship(t_data *all_data);
+// UTILS
+int			ft_is_num(const char *str);
+long		ft_atol(const char *nptr);
+double		ft_atof(const char *str);
+int			ft_is_double(const char *n);
+int			ft_rgb_to_int(int r, int g, int b);
 
 #endif

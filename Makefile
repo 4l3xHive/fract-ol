@@ -10,6 +10,7 @@ MANDATORY	=	main.c \
 				user_input.c \
 				refresh.c \
 				inits.c \
+				utils.c \
 				
 
 BONUS		=	main_bonus.c set_fractal_bonus.c \

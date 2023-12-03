@@ -16,3 +16,4 @@ https://github.com/tbottini/Fractol/tree/master/src
 https://github.com/Alexdelia/42-fract-ol/blob/main/srcs/main.c
 
 https://github.com/Alexdelia/42-fract-ol/blob/main/srcs/ft_render.c#L74
+https://github.com/Alexdelia/42-fract-ol/blob/main/srcs/fractal_set/burning_ship.c

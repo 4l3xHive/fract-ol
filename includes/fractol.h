@@ -108,8 +108,6 @@ typedef struct s_data
 int			mouse_events(int event, int x, int y, t_data *data);
 int			keyboard_events(int keycode, t_data *data);
 int			ft_clean_exit(t_data *all_data, const char *error_msg);
-int			ft_minimize(t_data *all_data);
-int			ft_put_img_back(t_data *all_data);
 
 // INITS
 void		ft_init_lib_mlx(t_data *all_data);

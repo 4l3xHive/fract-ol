@@ -33,6 +33,7 @@ int	mouse_events(int event, int x, int y, t_data *all_data)
 	double		zoom;
 	double		inter;
 
+	printf("HERE %d\n", event);
 	if (event == SCROLL_UP || event == SCROLL_DOWN)
 	{
 		mouse.r = (double)x / (all_data->calc.size_x / (all_data->calc.max.r - all_data->calc.min.r))

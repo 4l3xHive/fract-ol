@@ -17,7 +17,7 @@ static double	ft_interpolate(double min, double max, double inter)
 	return (min + ((max - min) * inter));
 }
 
-// CALLBACKS CHECKER
+/* Keyboard callbacks */
 int	keyboard_events(int keycode, t_data *data)
 {
 	if (keycode == ESC)
@@ -27,6 +27,7 @@ int	keyboard_events(int keycode, t_data *data)
 	return (SUCCESS);
 }
 
+/* Mouse callbacks */
 int	mouse_events(int event, int x, int y, t_data *data)
 {
 	t_complex	mouse;

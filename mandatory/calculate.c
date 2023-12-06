@@ -67,7 +67,7 @@ int	ft_calc_mandelbrot(t_data *data)
 				% (data->calc.ite * data->calc.ite), 0, 0)));
 }
 
-// SAME AS MANDELBROT BUT -2
+/* inverted mandelbrot */
 int	ft_calc_tricorn(t_data *data)
 {
 	int			i;

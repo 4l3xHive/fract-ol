@@ -20,14 +20,16 @@ BONUS		=	main_bonus.c set_fractal_bonus.c \
 OBJS		=	$(addprefix $(PATH_M), $(MANDATORY:.c=.o))
 OBJS_B		=	$(addprefix $(PATH_B), $(BONUS:.c=.o))
 
-# Compile flags
+# Check for OS
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-	CFLAG = -g -L./minilibx-linux -lmlx -lX11 -lXext -Imlx -lm -Wall -Wextra -Werror
+    CFLAG = -g -L./minilibx-linux -lmlx -lX11 -lXext -Imlx -lm -Wall -Wextra -Werror
+    LIBRARY_PATH = ./minilibx-linux
 else ifeq ($(UNAME_S),Darwin)
-	CFLAG = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit -lm
+    CFLAG = -Wall -Wextra -Werror -lmlx -Imlx -L./minilibx-macos -framework OpenGL -framework AppKit -lm
+    LIBRARY_PATH = ./minilibx-macos
 else
-	$(error "Unsupported operating system ($(UNAME_S)) == windows :-D")
+    $(error "Unsupported operating system ($(UNAME_S)) == windows :-D")
 endif
 
 all: dependencies $(NAME)
@@ -38,6 +40,7 @@ bonus: libftprintf ${OBJS_B}
 dependencies:
 	@make -C ./libftprintf
 	@make -C ./libftprintf/libft
+	@make -C $(LIBRARY_PATH)
 
 $(NAME): ${LIBS} ${OBJS}
 	cc ${OBJS} ${LIBS} ${CFLAG} -o ${NAME} ${HEADER}
@@ -46,6 +49,7 @@ $(NAME): ${LIBS} ${OBJS}
 	cc -Wall -Wextra -Werror -c $< -o $@ ${HEADER}
 
 clean:
+	@make clean -C $(LIBRARY_PATH)
 	rm -f ${OBJS} ${OBJS_B}
 	$(MAKE) clean -C ./libftprintf
 
@@ -55,4 +59,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus libftprintf clean fclean re
+.PHONY: all bonus libftprintf clean fclean re dependencies

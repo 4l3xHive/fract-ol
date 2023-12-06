@@ -1,5 +1,6 @@
 CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
+BONUS_LINKED_FLAG = .bonus_linked
 SRCS_FILES = ft_memset \
 		ft_bzero \
 		ft_memcpy \
@@ -35,15 +36,15 @@ SRCS_FILES = ft_memset \
 		ft_putendl_fd \
 		ft_putnbr_fd \
 
-BONUS_FILES = 	ft_lstnew \
-	  		ft_lstadd_front \
-	  		ft_lstsize \
-	  		ft_lstlast \
-	  		ft_lstadd_back \
-	  		ft_lstdelone \
-	  		ft_lstclear \
-	  		ft_lstiter \
-	  		ft_lstmap
+BONUS_FILES = 	ft_lstnew_bonus \
+	  		ft_lstadd_front_bonus \
+	  		ft_lstsize_bonus \
+	  		ft_lstlast_bonus \
+	  		ft_lstadd_back_bonus \
+	  		ft_lstdelone_bonus \
+	  		ft_lstclear_bonus \
+	  		ft_lstiter_bonus \
+	  		ft_lstmap_bonus
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
@@ -62,10 +63,16 @@ $(NAME): $(OBJS)
 	@gcc $(CFLAGS) -c $< -o $@
 
 bonus: $(BONUS_OBJ)
-	@ar rus $(NAME) $^
+	@if [ -f $(BONUS_LINKED_FLAG) ]; then \
+		echo "make: Nothing to be done for bonus'."; \
+	else \
+	    ar rus $(NAME) $^; \
+	    ranlib $(NAME); \
+	    touch $(BONUS_LINKED_FLAG); \
+	fi
 
 clean:
-	@rm -f $(OBJS) $(BONUS_OBJ)
+	@rm -f $(OBJS) $(BONUS_OBJ) $(BONUS_LINKED_FLAG)
 
 fclean: clean
 	@rm -f $(NAME)

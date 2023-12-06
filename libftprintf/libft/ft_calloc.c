@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 00:11:36 by apyykone          #+#    #+#             */
-/*   Updated: 2023/11/01 13:01:10 by apyykone         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:53:08 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	void	*ptr;
 	size_t	bytes_total;
 
-	if (nmemb != 0 && size != 0 && nmemb > SIZE_MAX / size)
+	if (!nmemb || !size)
+		return (ft_calloc(1, 1));
+	if (nmemb > SIZE_MAX / size)
 		return (NULL);
 	bytes_total = nmemb * size;
 	if (bytes_total >= 4611686014132420609)

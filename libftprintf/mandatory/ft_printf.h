@@ -12,8 +12,11 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# define INT_MAX 2147483647
-# define INT_MIN -2147483648
+
+# ifdef __linux__
+#  include <stdint.h>
+# endif
+# include <limits.h>
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>

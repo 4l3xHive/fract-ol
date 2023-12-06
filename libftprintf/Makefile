@@ -17,7 +17,8 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 makelibft:
-	@make -s -C $(LIBFTDIR)
+	@make bonus -C $(LIBFTDIR)
+	@make -C $(LIBFTDIR)
 	@cp $(LIBFTDIR)/$(LIBFTNAME) .
 	@mv $(LIBFTNAME) $(NAME)
 

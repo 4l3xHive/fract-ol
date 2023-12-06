@@ -1,5 +1,13 @@
 # fract-ol
 
+# Macos
++ Problems with macos opengl and the scrolling 
+
+# Linux 
++ Works perfectly with X11 and linux.
+- Ofcourse because of the superior OS
+
+
 https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
 
 ## Using just ft_printf to compile printft and libft both to the project

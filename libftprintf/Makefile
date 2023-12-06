@@ -17,12 +17,15 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 makelibft:
-	@make -C $(LIBFTDIR)
+	@make -s -C $(LIBFTDIR)
 	@cp $(LIBFTDIR)/$(LIBFTNAME) .
 	@mv $(LIBFTNAME) $(NAME)
 
 $(NAME): makelibft $(OBJS)
 	@ar rcs $@ $(OBJS)
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJS) $(LIBFT_OBJS)

@@ -43,19 +43,19 @@ dependencies:
 	@make -C $(LIBRARY_PATH)
 
 $(NAME): ${LIBS} ${OBJS}
-	cc ${OBJS} ${LIBS} ${CFLAG} -o ${NAME} ${HEADER}
+	@cc ${OBJS} ${LIBS} ${CFLAG} -o ${NAME} ${HEADER}
 
 %.o: %.c
-	cc -Wall -Wextra -Werror -c $< -o $@ ${HEADER}
+	@cc -Wall -Wextra -Werror -c $< -o $@ ${HEADER}
 
 clean:
 	@make clean -C $(LIBRARY_PATH)
-	rm -f ${OBJS} ${OBJS_B}
+	@rm -f ${OBJS} ${OBJS_B}
 	$(MAKE) clean -C ./libftprintf
 
 fclean: clean
-	rm -f ${NAME}
-	rm -f ${LIBS}
+	@rm -f ${NAME}
+	@rm -f ${LIBS}
 
 re: fclean all
 

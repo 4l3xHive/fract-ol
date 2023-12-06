@@ -25,7 +25,7 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	CFLAG = -g -L./minilibx-linux -lmlx -lX11 -lXext -Imlx -lm -Wall -Wextra -Werror
 else ifeq ($(UNAME_S),Darwin)
-	CFLAG = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
+	CFLAG = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit -lm
 else
 	$(error "Unsupported operating system ($(UNAME_S)) == windows :-D")
 endif

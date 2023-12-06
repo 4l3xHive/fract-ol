@@ -18,7 +18,7 @@ static double	ft_interpolate(double min, double max, double inter)
 }
 
 // CALLBACKS CHECKER
-int keyboard_events(int keycode, t_data *data)
+int	keyboard_events(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 	{
@@ -27,29 +27,29 @@ int keyboard_events(int keycode, t_data *data)
 	return (SUCCESS);
 }
 
-int	mouse_events(int event, int x, int y, t_data *all_data)
+int	mouse_events(int event, int x, int y, t_data *data)
 {
 	t_complex	mouse;
 	double		zoom;
 	double		inter;
 
-	printf("HERE %d\n", event);
 	if (event == SCROLL_UP || event == SCROLL_DOWN)
 	{
-		mouse.r = (double)x / (all_data->calc.size_x / (all_data->calc.max.r - all_data->calc.min.r))
-			+ all_data->calc.min.r;
-		mouse.i = (double)y / (all_data->calc.size_y / (all_data->calc.max.i - all_data->calc.min.i))
-			* -1 + all_data->calc.max.i;
+		mouse.r = (double)x / (data->calc.size_x / \
+		(data->calc.max.r - data->calc.min.r)) + data->calc.min.r;
+		mouse.i = (double)y / (data->calc.size_y / \
+		(data->calc.max.i - data->calc.min.i))
+			* -1 + data->calc.max.i;
 		if (event == SCROLL_DOWN)
 			zoom = 0.70;
 		else
 			zoom = 1.30;
 		inter = 1.0 / zoom;
-		all_data->calc.min.r = ft_interpolate(mouse.r, all_data->calc.min.r, inter);
-		all_data->calc.min.i = ft_interpolate(mouse.i, all_data->calc.min.i, inter);
-		all_data->calc.max.r = ft_interpolate(mouse.r, all_data->calc.max.r, inter);
-		all_data->calc.max.i = ft_interpolate(mouse.i, all_data->calc.max.i, inter);
-		ft_refresh(all_data);
+		data->calc.min.r = ft_interpolate(mouse.r, data->calc.min.r, inter);
+		data->calc.min.i = ft_interpolate(mouse.i, data->calc.min.i, inter);
+		data->calc.max.r = ft_interpolate(mouse.r, data->calc.max.r, inter);
+		data->calc.max.i = ft_interpolate(mouse.i, data->calc.max.i, inter);
+		ft_refresh(data);
 	}
 	return (SUCCESS);
 }

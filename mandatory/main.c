@@ -14,6 +14,10 @@
 
 int	ft_clean_exit(t_data *all_data, const char *error_msg)
 {
+	if (error_msg)
+		ft_printf("\n"RED_BUFF"\n\n", error_msg);
+	else
+		ft_printf("\n\t"GREEN_BUFF"\n\n", "<('') EXITED CLEAN ('')>");
 	if (all_data)
 	{
 		if (all_data->lib.img)
@@ -23,10 +27,6 @@ int	ft_clean_exit(t_data *all_data, const char *error_msg)
 		if (all_data->lib.mlx)
 			free(all_data->lib.mlx);
 	}
-	if (error_msg)
-		ft_printf("\n"RED_BUFF"\n", error_msg);
-	else
-		ft_printf("\n\t"GREEN_BUFF"\n", "ALL OK BYE BYE ('')>");
 	exit(0);
 	return (SUCCESS);
 }

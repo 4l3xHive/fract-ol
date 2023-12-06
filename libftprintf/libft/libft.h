@@ -6,17 +6,20 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:55:43 by apyykone          #+#    #+#             */
-/*   Updated: 2023/11/17 23:47:39 by apyykone         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:13:13 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# ifdef __linux__
+#  include <stdint.h>
+# endif
+# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
-# include <limits.h>
-# include <inttypes.h>
 
 typedef struct s_list
 {

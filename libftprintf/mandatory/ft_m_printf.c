@@ -48,14 +48,16 @@ int	ft_printf(const char *s, ...)
 		if (*s == '%')
 		{
 			s++;
-			if (check_formatter(s, &total_length, &argptr) < 0)
-				return (-1);
-			s++;
+			if (check_formatter(s++, &total_length, &argptr) < 0)
+				break ;
 		}
 		else
 		{
 			if (ft_m_putchar(*s++) == -1)
-				return (-1);
+			{
+				total_length = -1;
+				break ;
+			}
 			total_length++;
 		}
 	}

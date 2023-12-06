@@ -55,7 +55,7 @@ static void	ft_get_args(int ac, char **av, t_data *all_data)
 int	main(int ac, char **av)
 {
 	t_data		all_data;
-	// INITS
+
 	ft_get_args(ac, av, &all_data);
 	ft_init_lib_mlx(&all_data);
 	ft_refresh(&all_data);

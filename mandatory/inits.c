@@ -12,6 +12,7 @@
 
 #include "fractol.h"
 
+/*Default inits for maths */
 void	ft_default_calc_init(t_calc *calc)
 {
 	calc->size_x = X_WIDTH;
@@ -23,6 +24,7 @@ void	ft_default_calc_init(t_calc *calc)
 	calc->k = ft_init_complex(-0.4, 0.6);
 }
 
+/*Inits if arguments given*/
 void	ft_args_calc_init(int ac, char **av, t_data *all_data)
 {
 	if (ac > 2 && ft_is_num(av[2]) == FALSE)
@@ -35,7 +37,7 @@ void	ft_args_calc_init(int ac, char **av, t_data *all_data)
 	}
 	if (ac >= 5
 		&& (ft_is_double(av[3]) == FALSE || ft_is_double(av[4]) == FALSE))
-			ft_clean_exit(all_data, "Third or fourth argument is not a number !");
+		ft_clean_exit(all_data, "third or fourt arguments is not a number!");
 	if (ac >= 5)
 	{
 		all_data->calc.k.r = ft_atof(av[3]);
@@ -43,6 +45,7 @@ void	ft_args_calc_init(int ac, char **av, t_data *all_data)
 	}
 }
 
+/* Init the complex numbers */
 t_complex	ft_init_complex(double real, double imaginary)
 {
 	t_complex	c;
@@ -52,19 +55,23 @@ t_complex	ft_init_complex(double real, double imaginary)
 	return (c);
 }
 
-void ft_init_lib_mlx(t_data *all_data)
+/* Init the mlx library & callback hooks */
+void	ft_init_lib_mlx(t_data *data)
 {
-	if (!(all_data->lib.mlx = mlx_init()))
-		ft_clean_exit(all_data, "Failed to init mlx!");
-	if (!(all_data->lib.img = mlx_new_image(all_data->lib.mlx, X_WIDTH, Y_HEIGHT)))
-		ft_clean_exit(all_data, "Error Render Creating Image!");
-	all_data->lib.addr = mlx_get_data_addr(all_data->lib.img, &all_data->lib.bits_per_pixel, \
-		&all_data->lib.line_length, &all_data->lib.endian);
-	if (all_data->lib.addr == NULL)
-		ft_clean_exit(all_data, "Error Render Saving Data!");
-	if (!(all_data->lib.win = mlx_new_window(all_data->lib.mlx, X_WIDTH, Y_HEIGHT, "Fract-olli")))
-		ft_clean_exit(all_data, "Error Creating Window!");
-	mlx_key_hook(all_data->lib.win, keyboard_events, all_data);
-	mlx_mouse_hook(all_data->lib.win, mouse_events, all_data);
-	mlx_hook(all_data->lib.win, 33, 1L << 5, ft_clean_exit, all_data);
+	data->lib.mlx = mlx_init();
+	if (data->lib.mlx == NULL)
+		ft_clean_exit(data, "Failed to init mlx!");
+	data->lib.img = mlx_new_image(data->lib.mlx, X_WIDTH, Y_HEIGHT);
+	if (data->lib.img == NULL)
+		ft_clean_exit(data, "Error Render Creating Image!");
+	data->lib.addr = mlx_get_data_addr(data->lib.img, &data->lib.bits_per_pxl, \
+	&data->lib.line_length, &data->lib.endian);
+	if (data->lib.addr == NULL)
+		ft_clean_exit(data, "Error Render Saving Data Addr!");
+	data->lib.win = mlx_new_window(data->lib.mlx, X_WIDTH, Y_HEIGHT, "F-O");
+	if (data->lib.win == NULL)
+		ft_clean_exit(data, "Error Creating Window!");
+	mlx_key_hook(data->lib.win, keyboard_events, data);
+	mlx_mouse_hook(data->lib.win, mouse_events, data);
+	mlx_hook(data->lib.win, 33, 1L << 5, ft_clean_exit, data);
 }

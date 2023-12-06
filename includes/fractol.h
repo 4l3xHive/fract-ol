@@ -18,7 +18,6 @@
 # include "../libftprintf/libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
-# include <errno.h>
 # include <limits.h>
 
 # define RED_BUFF 		"\033[1;31m%s\033[0m"
@@ -38,31 +37,30 @@
 # define MAX_R			2.0
 # define MAX_I			2.0
 
-#ifdef __linux__
-# include "../minilibx-linux/mlx.h"
-# define ESC  	65307
-# define UP   	65362
-# define DOWN 	65364
-# define LEFT 	65361
-# define RIGHT	65363
-#else
-# define ESC  	53
-# define UP   	126
-# define DOWN 	125
-# define LEFT 	123
-# define RIGHT	124
-# include <mlx.h>
-#endif
+# ifdef __linux__
+#  include "../minilibx-linux/mlx.h"
+#  define ESC  	65307
+#  define UP   	65362
+#  define DOWN 	65364
+#  define LEFT 	65361
+#  define RIGHT	65363
+# else
+#  define ESC  	53
+#  define UP   	126
+#  define DOWN 	125
+#  define LEFT 	123
+#  define RIGHT	124
+#  include <mlx.h>
+# endif
 
-typedef enum
+typedef enum s_choice
 {
 	E_ERR,
-    JULIA,
-    MANDEL,
-    SHIP,
+	JULIA,
+	MANDEL,
+	SHIP,
 	TRICORN,
-}e_choice;
-
+}			t_e_choice;
 
 typedef struct s_complex
 {
@@ -77,7 +75,7 @@ typedef struct s_lib
 	void		*win;
 	void		*img;
 	char		*addr;
-	int			bits_per_pixel;
+	int			bits_per_pxl;
 	int			line_length;
 	int			endian;
 	int			fractol;
@@ -97,7 +95,7 @@ typedef struct s_calc
 
 }t_calc;
 
-typedef struct s_data 
+typedef struct s_data
 {
 	t_lib		lib;
 	t_calc		calc;

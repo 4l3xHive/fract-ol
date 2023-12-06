@@ -20,7 +20,6 @@ int	ft_rgb_to_int(int r, int g, int b)
 	return (color);
 }
 
-
 long	ft_atol(const char *nptr)
 {
 	int		i;

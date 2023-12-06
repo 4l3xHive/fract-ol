@@ -35,6 +35,8 @@ void	ft_args_calc_init(int ac, char **av, t_data *all_data)
 		if (all_data->calc.ite <= 0)
 			all_data->calc.ite = 1;
 	}
+	if (ac == 4)
+		ft_clean_exit(all_data, "Add one argument more for valid complex number!");
 	if (ac >= 5
 		&& (ft_is_double(av[3]) == FALSE || ft_is_double(av[4]) == FALSE))
 		ft_clean_exit(all_data, "third or fourt arguments is not a number!");

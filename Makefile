@@ -2,8 +2,8 @@ NAME		=	fractol
 PATH_M		=	./mandatory/
 PATH_B		=	./bonus/
 MAKEFLAGS	=	--no-print-directory
-HEADER		=	-I./includes
-LIBS		=	./libftprintf/libftprintf.a ./libftprintf/libft/libft.a
+HEADER		=	-I./includes -I./libft
+LIBS		=	./libft/libft.a
 
 MANDATORY	=	main.c \
 				calculate.c \
@@ -34,13 +34,11 @@ endif
 
 all: dependencies $(NAME)
 
-bonus: libftprintf ${OBJS_B}
+bonus: libft ${OBJS_B}
 	@make $(NAME) OBJS="${OBJS_B}"
 
 dependencies:
-	@make -C ./libftprintf
-	@make -C ./libftprintf/libft
-	@make -C $(LIBRARY_PATH)
+	@make -C ./libft
 
 $(NAME): ${LIBS} ${OBJS}
 	@cc ${OBJS} ${LIBS} ${CFLAG} -o ${NAME} ${HEADER}
@@ -51,7 +49,7 @@ $(NAME): ${LIBS} ${OBJS}
 clean:
 	@make clean -C $(LIBRARY_PATH)
 	@rm -f ${OBJS} ${OBJS_B}
-	$(MAKE) clean -C ./libftprintf
+	$(MAKE) clean -C ./libft
 
 fclean: clean
 	@rm -f ${NAME}
@@ -59,4 +57,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus libftprintf clean fclean re dependencies
+.PHONY: all bonus clean fclean re dependencies

@@ -12,7 +12,6 @@
 
 #include "fractol.h"
 
-int scroll = 0;
 // ALL COLOR CHANNELS (R G B A)
 static void	ft_extract_rgb(t_lib *lib, int color, int index)
 {
@@ -60,11 +59,11 @@ static int	draw_fractal(t_data *data)
 
 int	ft_refresh(t_data *data)
 {
-	data->calc.factor = ft_init_complex(
-			(data->calc.max.r - data->calc.min.r) / (X_WIDTH - 1),
-			(data->calc.max.i - data->calc.min.i) / (Y_HEIGHT - 1));
+	//if (!data->calc.factor.i)
+		data->calc.factor = ft_init_complex((data->calc.max.r
+					- data->calc.min.r) / (X_WIDTH - 1), (data->calc.max.i
+					- data->calc.min.i) / (Y_HEIGHT - 1));
 	draw_fractal(data);
-	printf("SCROLL SCROLL ! cnt -> %d \n", scroll++);
 	mlx_put_image_to_window(data->lib.mlx, data->lib.win, data->lib.img, 0, 0);
 	return (SUCCESS);
 }

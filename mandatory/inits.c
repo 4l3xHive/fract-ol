@@ -19,8 +19,8 @@ void	ft_default_calc_init(t_calc *calc)
 	calc->size_y = Y_HEIGHT;
 	calc->ite = MAX_ITERATION;
 	calc->min = ft_init_complex(MIN_R, MIN_I);
-	calc->max = ft_init_complex(MAX_R,
-			MIN_I + (MAX_R - MIN_R) * calc->size_x / calc->size_y);
+	calc->max = ft_init_complex(MAX_R, MIN_I + (MAX_R - MIN_R) * calc->size_x
+			/ calc->size_y);
 	calc->k = ft_init_complex(-0.4, 0.6);
 }
 
@@ -36,9 +36,10 @@ void	ft_args_calc_init(int ac, char **av, t_data *all_data)
 			all_data->calc.ite = 1;
 	}
 	if (ac == 4)
-		ft_clean_exit(all_data, "Add one argument more for valid complex number!");
-	if (ac >= 5
-		&& (ft_is_double(av[3]) == FALSE || ft_is_double(av[4]) == FALSE))
+		ft_clean_exit(all_data,
+			"Add one argument more for valid complex number!");
+	if (ac >= 5 && (ft_is_double(av[3]) == FALSE
+			|| ft_is_double(av[4]) == FALSE))
 		ft_clean_exit(all_data, "third or fourt arguments is not a number!");
 	if (ac >= 5)
 	{
@@ -66,8 +67,8 @@ void	ft_init_lib_mlx(t_data *data)
 	data->lib.img = mlx_new_image(data->lib.mlx, X_WIDTH, Y_HEIGHT);
 	if (data->lib.img == NULL)
 		ft_clean_exit(data, "Error Render Creating Image!");
-	data->lib.addr = mlx_get_data_addr(data->lib.img, &data->lib.bits_per_pxl, \
-	&data->lib.line_length, &data->lib.endian);
+	data->lib.addr = mlx_get_data_addr(data->lib.img, &data->lib.bits_per_pxl,
+			&data->lib.line_length, &data->lib.endian);
 	if (data->lib.addr == NULL)
 		ft_clean_exit(data, "Error Render Saving Data Addr!");
 	data->lib.win = mlx_new_window(data->lib.mlx, X_WIDTH, Y_HEIGHT, "F-O");

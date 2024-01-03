@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:16:00 by apyykone          #+#    #+#             */
-/*   Updated: 2023/11/26 13:16:51 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/01/03 17:45:52 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	ft_clean_exit(t_data *all_data, const char *error_msg)
 {
 	if (error_msg)
-		ft_printf("\n"RED_BUFF"\n\n", error_msg);
+		ft_printf("\n" RED_BUFF "\n\n", error_msg);
 	else
-		ft_printf("\n\t"GREEN_BUFF"\n\n", "<('') EXITED CLEAN ('')>");
+		ft_printf("\n\t" GREEN_BUFF "\n\n", "<('') EXITED CLEAN ('')>");
 	if (all_data)
 	{
 		if (all_data->lib.img)
@@ -44,7 +44,7 @@ static void	ft_get_args(int ac, char **av, t_data *all_data)
 		all_data->lib.fractol = SHIP;
 	else if (!(ft_strncmp(av[1], "tricorn", 8)))
 		all_data->lib.fractol = TRICORN;
-	else 
+	else
 		ft_clean_exit(NULL, "\tWrong argument enter valid program\n\
 	[1] julia\n\t[2] mandelbrot\n\t[3] burningship\n\t[4] tricorn");
 	ft_default_calc_init(&all_data->calc);
@@ -54,7 +54,7 @@ static void	ft_get_args(int ac, char **av, t_data *all_data)
 
 int	main(int ac, char **av)
 {
-	t_data		all_data;
+	t_data	all_data;
 
 	ft_get_args(ac, av, &all_data);
 	ft_init_lib_mlx(&all_data);

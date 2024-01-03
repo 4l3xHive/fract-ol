@@ -1,7 +1,6 @@
 NAME		=	fractol
 PATH_M		=	./mandatory/
 PATH_B		=	./bonus/
-MAKEFLAGS	=	--no-print-directory
 HEADER		=	-I./includes -I./libft
 LIBS		=	./libft/libft.a
 
@@ -26,8 +25,7 @@ ifeq ($(UNAME_S),Linux)
     CFLAG = -g -L./minilibx-linux -lmlx -lX11 -lXext -Imlx -lm -Wall -Wextra -Werror
     LIBRARY_PATH = ./minilibx-linux
 else ifeq ($(UNAME_S),Darwin)
-    CFLAG = -Wall -Wextra -Werror -lmlx -Imlx -L./minilibx-macos -framework OpenGL -framework AppKit -lm
-    LIBRARY_PATH = ./minilibx-macos
+    CFLAG = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit -lm
 else
     $(error "Unsupported operating system ($(UNAME_S)) == windows :-D")
 endif
@@ -42,14 +40,21 @@ dependencies:
 
 $(NAME): ${LIBS} ${OBJS}
 	@cc ${OBJS} ${LIBS} ${CFLAG} -o ${NAME} ${HEADER}
+	@printf "\033[0;32m$(NAME) succesfully created.\033[0m\n"
 
 %.o: %.c
 	@cc -Wall -Wextra -Werror -c $< -o $@ ${HEADER}
 
 clean:
+ifeq ($(UNAME_S),Linux)
 	@make clean -C $(LIBRARY_PATH)
 	@rm -f ${OBJS} ${OBJS_B}
 	$(MAKE) clean -C ./libft
+else
+	@rm -f ${OBJS} ${OBJS_B}
+	@make clean -C ./libft
+endif
+
 
 fclean: clean
 	@rm -f ${NAME}

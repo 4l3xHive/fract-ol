@@ -14,8 +14,7 @@
 # define FRACTOL_H
 
 # include <math.h>
-# include "../libftprintf/mandatory/ft_printf.h"
-# include "../libftprintf/libft/libft.h"
+# include "libft.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>

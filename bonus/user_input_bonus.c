@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   user_input.c                                       :+:      :+:    :+:   */
+/*   user_input_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,6 +11,11 @@
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
+
+static double	ft_interpolate(double min, double max, double inter)
+{
+	return (min + ((max - min) * inter));
+}
 
 /* Keyboard callbacks */
 int	keyboard_events(int keycode, t_data *data)
@@ -59,10 +64,10 @@ int	mouse_events(int event, int x, int y, t_data *data)
 		else
 			zoom = 1.30;
 		inter = 1.0 / zoom;
-		data->calc.min.r *= zoom;
-		data->calc.min.i *= zoom;
-		data->calc.max.r *= zoom;
-		data->calc.max.i *= zoom;
+		data->calc.min.r = ft_interpolate(mouse.r, data->calc.min.r, inter);
+		data->calc.min.i = ft_interpolate(mouse.i, data->calc.min.i, inter);
+		data->calc.max.r = ft_interpolate(mouse.r, data->calc.max.r, inter);
+		data->calc.max.i = ft_interpolate(mouse.i, data->calc.max.i, inter);
 		ft_refresh(data);
 	}
 	return (SUCCESS);

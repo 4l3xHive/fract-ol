@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 void	ft_clean_exit(t_data *all_data, const char *error_msg)
 {
@@ -30,7 +30,7 @@ void	ft_clean_exit(t_data *all_data, const char *error_msg)
 		if (all_data->lib.mlx)
 			free(all_data->lib.mlx);
 	}
-	exit(EXIT_SUCCESS);
+	exit(0);
 }
 
 static void	ft_get_args(int ac, char **av, t_data *all_data)

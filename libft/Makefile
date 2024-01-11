@@ -2,6 +2,9 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 INCLUDES = -I ./get_next_line -I ./ft_printf
 
+#Styles
+HAMMER_ICON = "\xf0\x9f\x94\xa8"
+
 SRCS_FILES = ft_memset \
 		ft_bzero \
 		ft_memcpy \
@@ -36,6 +39,8 @@ SRCS_FILES = ft_memset \
 		ft_putstr_fd \
 		ft_putendl_fd \
 		ft_putnbr_fd \
+		ft_atol \
+		ft_atof \
 
 BONUS_FILES = 	ft_lstnew_bonus \
 	  		ft_lstadd_front_bonus \
@@ -95,3 +100,4 @@ fclean: clean
 re: fclean $(NAME)
 
 .PHONY: bonus all clean fclean re
+

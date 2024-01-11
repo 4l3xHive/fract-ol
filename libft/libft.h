@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:55:43 by apyykone          #+#    #+#             */
-/*   Updated: 2023/12/11 10:25:35 by alex             ###   ########.fr       */
+/*   Updated: 2024/01/11 08:14:00 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,19 @@
 # include "./get_next_line/get_next_line_bonus.h"
 # include <limits.h>
 # include <stddef.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+// 126 up 123 left 125 down 124 right
 
 typedef struct s_list
 {
 	void			*content;
-	int				index;
 	struct s_list	*next;
 }					t_list;
 
+double				ft_atof(const char *str);
+long				ft_atol(const char *str);
 int					ft_isalnum(int c);
 int					ft_isprint(int c);
 int					ft_isdigit(int c);

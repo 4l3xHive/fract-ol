@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img_win.c                                          :+:      :+:    :+:   */
+/*   refresh_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 22:35:39 by apyykone          #+#    #+#             */
-/*   Updated: 2023/11/27 22:35:41 by apyykone         ###   ########.fr       */
+/*   Created: 2024/01/11 15:03:29 by apyykone          #+#    #+#             */
+/*   Updated: 2024/01/11 15:03:31 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 // ALL COLOR CHANNELS (R G B A)
 static void	ft_extract_rgb(t_lib *lib, int color, int index)

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_funcs.c                                       :+:      :+:    :+:   */
+/*   calculate_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/26 16:03:42 by apyykone          #+#    #+#             */
-/*   Updated: 2023/11/26 16:03:44 by apyykone         ###   ########.fr       */
+/*   Created: 2024/01/11 15:02:39 by apyykone          #+#    #+#             */
+/*   Updated: 2024/01/11 15:02:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 static int	ft_set_rgb(int color)
 {

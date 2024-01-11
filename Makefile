@@ -1,4 +1,5 @@
 NAME		=	fractol
+NAME_BONUS =	fractol_bonus
 PATH_M		=	./mandatory/
 PATH_B		=	./bonus/
 HEADER		=	-I./includes -I./libft
@@ -10,11 +11,13 @@ MANDATORY	=	main.c \
 				refresh.c \
 				inits.c \
 				utils.c \
-				
 
-BONUS		=	main_bonus.c set_fractal_bonus.c \
-				errors_bonus.c events_bonus.c \
-				render_fractal_bonus.c calc_fractal_bonus.c
+BONUS=			main_bonus.c \
+				calculate_bonus.c \
+				user_input_bonus.c \
+				refresh_bonus.c \
+				inits_bonus.c \
+				utils_bonus.c \
 
 OBJS		=	$(addprefix $(PATH_M), $(MANDATORY:.c=.o))
 OBJS_B		=	$(addprefix $(PATH_B), $(BONUS:.c=.o))
@@ -32,8 +35,7 @@ endif
 
 all: dependencies $(NAME)
 
-bonus: libft ${OBJS_B}
-	@make $(NAME) OBJS="${OBJS_B}"
+bonus:  dependencies $(NAME_BONUS)
 
 dependencies:
 	@make -C ./libft
@@ -42,6 +44,10 @@ $(NAME): ${LIBS} ${OBJS}
 	@cc ${OBJS} ${LIBS} ${CFLAG} -o ${NAME} ${HEADER}
 	@printf "\033[0;32m$(NAME) succesfully created.\033[0m\n"
 
+$(NAME_BONUS): ${LIBS} ${OBJS_B}
+	@cc ${OBJS_B} ${LIBS} ${CFLAG} -o ${NAME_BONUS} ${HEADER}
+	@printf "\033[0;32m$(NAME_BONUS) succesfully created.\033[0m\n"
+
 %.o: %.c
 	@cc -Wall -Wextra -Werror -c $< -o $@ ${HEADER}
 
@@ -49,7 +55,7 @@ clean:
 ifeq ($(UNAME_S),Linux)
 	@make clean -C $(LIBRARY_PATH)
 	@rm -f ${OBJS} ${OBJS_B}
-	$(MAKE) clean -C ./libft
+	@make clean -C ./libft
 else
 	@rm -f ${OBJS} ${OBJS_B}
 	@make clean -C ./libft
@@ -58,7 +64,9 @@ endif
 
 fclean: clean
 	@rm -f ${NAME}
+	@rm -f ${NAME_BONUS}
 	@rm -f ${LIBS}
+	@printf "\033[0;31m Succesfully Cleaned.\033[0m\n"
 
 re: fclean all
 

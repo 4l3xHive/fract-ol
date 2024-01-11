@@ -76,5 +76,4 @@ void	ft_init_lib_mlx(t_data *data)
 		ft_clean_exit(data, "Error Creating Window!");
 	mlx_key_hook(data->lib.win, keyboard_events, data);
 	mlx_mouse_hook(data->lib.win, mouse_events, data);
-	mlx_hook(data->lib.win, 33, 1L << 5, ft_clean_exit, data);
 }

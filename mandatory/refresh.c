@@ -59,7 +59,6 @@ static int	draw_fractal(t_data *data)
 
 int	ft_refresh(t_data *data)
 {
-	//if (!data->calc.factor.i)
 		data->calc.factor = ft_init_complex((data->calc.max.r
 					- data->calc.min.r) / (X_WIDTH - 1), (data->calc.max.i
 					- data->calc.min.i) / (Y_HEIGHT - 1));

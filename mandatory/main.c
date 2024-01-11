@@ -15,9 +15,9 @@
 int	ft_clean_exit(t_data *all_data, const char *error_msg)
 {
 	if (error_msg)
-		ft_printf("\n" RED_BUFF "\n\n", error_msg);
+		ft_putstr_fd(ARGERROR, 2);
 	else
-		ft_printf("\n\t" GREEN_BUFF "\n\n", "<('') EXITED CLEAN ('')>");
+		ft_printf("\033[0;32m<('') EXITED CLEAN ('')>\033[0m\n");
 	if (all_data)
 	{
 		if (all_data->lib.img)
@@ -34,8 +34,7 @@ int	ft_clean_exit(t_data *all_data, const char *error_msg)
 static void	ft_get_args(int ac, char **av, t_data *all_data)
 {
 	if (ac < 2)
-		ft_clean_exit(NULL, "\tWrong argument enter valid program\n\
-	[1] julia\n\t[2] mandelbrot\n\t[3] burningship\n\t[4] tricorn");
+		ft_clean_exit(NULL, ARGERROR);
 	if (!ft_strncmp(av[1], "julia", 6))
 		all_data->lib.fractol = JULIA;
 	else if (!ft_strncmp(av[1], "mandelbrot", 11))
@@ -45,8 +44,7 @@ static void	ft_get_args(int ac, char **av, t_data *all_data)
 	else if (!(ft_strncmp(av[1], "tricorn", 8)))
 		all_data->lib.fractol = TRICORN;
 	else
-		ft_clean_exit(NULL, "\tWrong argument enter valid program\n\
-	[1] julia\n\t[2] mandelbrot\n\t[3] burningship\n\t[4] tricorn");
+		ft_clean_exit(NULL, ARGERROR);
 	ft_default_calc_init(&all_data->calc);
 	if (ac > 2)
 		ft_args_calc_init(ac, av, all_data);

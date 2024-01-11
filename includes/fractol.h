@@ -19,17 +19,20 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define RED_BUFF "\033[1;31m%s\033[0m"
-# define GREEN_BUFF "\033[1;32m%s\033[0m"
+# define ARGERROR "\033[0;31m\
+	Wrong argument enter valid program\n\
+	[1] julia\n\
+	[2] mandelbrot\n\
+	[3] burningship\n\
+	[4] tricorn\033[0m\n"
 # define ERROR 1
 # define SUCCESS 0
 # define TRUE 1
 # define FALSE 0
 # define X_WIDTH 1000
 # define Y_HEIGHT 1000
-# define SCROLL_UP 4
-# define SCROLL_DOWN 5
-
+# define SCROLL_UP 5
+# define SCROLL_DOWN 4
 # define MAX_ITERATION 250
 # define MIN_R -2.0
 # define MIN_I -2.0

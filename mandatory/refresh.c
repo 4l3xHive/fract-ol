@@ -27,10 +27,6 @@ static void	launch_fractol(t_data *data, int index)
 		ft_extract_rgb(&data->lib, ft_calc_julia(data), index);
 	else if (data->lib.fractol == MANDEL)
 		ft_extract_rgb(&data->lib, ft_calc_mandelbrot(data), index);
-	else if (data->lib.fractol == TRICORN)
-		ft_extract_rgb(&data->lib, ft_calc_tricorn(data), index);
-	else if (data->lib.fractol == SHIP)
-		ft_extract_rgb(&data->lib, ft_calc_bship(data), index);
 }
 
 static int	draw_fractal(t_data *data)

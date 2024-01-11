@@ -23,13 +23,9 @@
 	"\033[0;31m\
 	First argument must be valid fractal!\n\
 	[1] julia\n\
-	[2] mandelbrot\n\
-	[3] burningship\n\
-	[4] tricorn\033[0m\n"
-# define EXTRA_ARGERROR \
-	"\033[0;31m ./fractol \
-	<argv1> fractal <argv2>(int) (<argv3>(double) + <argv4>(double)) \033[0m\n"
-
+	[2] mandelbrot\n"
+# define EXTRA_ARGERROR "\033[0;31m\
+	./fractol <argv1> fractal <argv2>(int) (<argv3>(double) + <argv4>(double)) \033[0m\n"
 # define ERROR 1
 # define SUCCESS 0
 # define TRUE 1

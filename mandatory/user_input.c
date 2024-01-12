@@ -6,13 +6,27 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 16:23:40 by apyykone          #+#    #+#             */
-/*   Updated: 2023/11/26 16:23:42 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/01/12 06:26:14 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-/* Keyboard callbacks */
+/**
+ * @brief Exit the program clean when user press X
+ * @param data all data
+ */
+int	ft_close_win(t_data *data)
+{
+	ft_clean_exit(data, NULL);
+	return (SUCCESS);
+}
+
+/**
+ * @brief Handles keyboard events
+ * @param keycode key pressed
+ * @param data all data
+ */
 int	keyboard_events(int keycode, t_data *data)
 {
 	if (keycode == ESC)
@@ -21,21 +35,25 @@ int	keyboard_events(int keycode, t_data *data)
 	return (SUCCESS);
 }
 
-/* Mouse callbacks */
+/**
+ * @brief Handles mouse events
+ * @param event mouse event
+ * @param x mouse x position
+ * @param y mouse y position
+ * @param data all data
+ */
 int	mouse_events(int event, int x, int y, t_data *data)
 {
-	double		zoom;
-	double		inter;
-	(void )x;
-	(void )y;
+	double	zoom;
 
+	(void)x;
+	(void)y;
 	if (event == SCROLL_UP || event == SCROLL_DOWN)
 	{
 		if (event == SCROLL_DOWN)
 			zoom = 0.70;
 		else
 			zoom = 1.30;
-		inter = 1.0 / zoom;
 		data->calc.min.r *= zoom;
 		data->calc.min.i *= zoom;
 		data->calc.max.r *= zoom;

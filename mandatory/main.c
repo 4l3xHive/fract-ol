@@ -19,8 +19,6 @@ void	ft_clean_exit(t_data *all_data, const char *error_msg)
 		ft_putstr_fd((char *)error_msg, 2);
 		exit(EXIT_FAILURE);
 	}
-	else
-		ft_printf("\033[0;32m<('') EXITED CLEAN ('')>\033[0m\n");
 	if (all_data)
 	{
 		if (all_data->lib.img)
@@ -30,6 +28,7 @@ void	ft_clean_exit(t_data *all_data, const char *error_msg)
 		if (all_data->lib.mlx)
 			free(all_data->lib.mlx);
 	}
+	ft_printf("\033[0;32m<('') EXITED CLEAN ('')>\033[0m\n");
 	exit(EXIT_SUCCESS);
 }
 

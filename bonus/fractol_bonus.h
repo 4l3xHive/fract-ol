@@ -26,16 +26,16 @@
 	[2] mandelbrot\n\
 	[3] burningship\n\
 	[4] tricorn\033[0m\n"
-# define EXTRA_ARGERROR "\033[0;31m\
-	./fractol <argv1> fractal <argv2>(int) (<argv3>(double) + <argv4>(double)) \033[0m\n"
+# define EXTRA_ARGERROR \
+	"\033[0;31m	./fractol <argv1> fractal <argv2>(int)\
+ (<argv3>(double) + <argv4>(double)) \033[0m\n"
+# define WIN_X_BTN 17
 # define ERROR 1
 # define SUCCESS 0
 # define TRUE 1
 # define FALSE 0
 # define X_WIDTH 1000
 # define Y_HEIGHT 1000
-# define SCROLL_UP 4
-# define SCROLL_DOWN 5
 # define MAX_ITERATION 250
 # define MIN_R -2.0
 # define MIN_I -2.0
@@ -49,7 +49,11 @@
 #  define DOWN 65364
 #  define LEFT 65361
 #  define RIGHT 65363
+#  define SCROLL_UP 5
+#  define SCROLL_DOWN 4
 # else
+#  define SCROLL_UP 4
+#  define SCROLL_DOWN 5
 #  define ESC 53
 #  define UP 126
 #  define DOWN 125
@@ -113,7 +117,7 @@ typedef struct s_data
 int				mouse_events(int event, int x, int y, t_data *data);
 int				keyboard_events(int keycode, t_data *data);
 void			ft_clean_exit(t_data *all_data, const char *error_msg);
-
+int				ft_close_win(t_data *data);
 // INITS
 void			ft_init_lib_mlx(t_data *all_data);
 t_complex		ft_init_complex(double real, double imaginary);

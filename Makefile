@@ -2,7 +2,7 @@ NAME		=	fractol
 NAME_BONUS =	fractol_bonus
 PATH_M		=	./mandatory/
 PATH_B		=	./bonus/
-HEADER		=	-I./includes -I./libft
+HEADER		=	-I./mandatory -I./bonus -I./libft
 LIBS		=	./libft/libft.a
 
 MANDATORY	=	main.c \
@@ -38,8 +38,13 @@ all: dependencies $(NAME)
 bonus:  dependencies $(NAME_BONUS)
 
 dependencies:
+ifeq ($(UNAME_S),Linux)
+	@make -C $(LIBRARY_PATH)
 	@make -C ./libft
-
+else
+	@make -C ./libft
+endif
+	
 $(NAME): ${LIBS} ${OBJS}
 	@cc ${OBJS} ${LIBS} ${CFLAG} -o ${NAME} ${HEADER}
 	@printf "\033[0;32m$(NAME) succesfully created.\033[0m\n"

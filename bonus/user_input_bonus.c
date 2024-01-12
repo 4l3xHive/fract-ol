@@ -17,7 +17,21 @@ static double	ft_interpolate(double min, double max, double inter)
 	return (min + ((max - min) * inter));
 }
 
-/* Keyboard callbacks */
+/**
+ * @brief Exit the program clean when user press X
+ * @param data all data
+ */
+int	ft_close_win(t_data *data)
+{
+	ft_clean_exit(data, NULL);
+	return (SUCCESS);
+}
+
+/**
+ * @brief Handles keyboard events
+ * @param keycode key pressed
+ * @param data all data
+ */
 int	keyboard_events(int keycode, t_data *data)
 {
 	if (keycode == ESC)
@@ -46,7 +60,13 @@ int	keyboard_events(int keycode, t_data *data)
 	return (SUCCESS);
 }
 
-/* Mouse callbacks */
+/**
+ * @brief Handles mouse events
+ * @param event mouse event
+ * @param x mouse x position
+ * @param y mouse y position
+ * @param data all data
+ */
 int	mouse_events(int event, int x, int y, t_data *data)
 {
 	t_complex	mouse;

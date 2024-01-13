@@ -12,19 +12,9 @@
 
 #include "fractol_bonus.h"
 
-static int	ft_set_rgb(int color)
+static int	ft_invert_rgb(int color)
 {
-	int	r;
-	int	g;
-	int	b;
-
-	r = color & 0xFF;
-	g = (color >> 8) & 0xFF;
-	b = (color >> 16) & 0xFF;
-	r = 255 - r;
-	g = 255 - g;
-	b = 255 - b;
-	return (r | g << 8 | b << 16);
+	return (~color);
 }
 
 int	ft_calc_julia(t_data *data)
@@ -41,9 +31,9 @@ int	ft_calc_julia(t_data *data)
 				* z.i + data->calc.k.i);
 		i++;
 	}
-	return (ft_set_rgb(ft_rgb_to_int(255 - 255 * ((data->calc.ite - i)
+	return (ft_invert_rgb(ft_rgb_to_int(255 - 255 * ((data->calc.ite - i)
 					* (data->calc.ite - i)) % (data->calc.ite * data->calc.ite),
-				10, 0)));
+				10, 150)));
 }
 
 int	ft_calc_mandelbrot(t_data *data)
@@ -62,9 +52,9 @@ int	ft_calc_mandelbrot(t_data *data)
 		c.r = tmp;
 		i++;
 	}
-	return (ft_set_rgb(ft_rgb_to_int(255 - 255 * ((data->calc.ite - i)
+	return (ft_invert_rgb(ft_rgb_to_int(255 - 255 * ((data->calc.ite - i)
 					* (data->calc.ite - i)) % (data->calc.ite * data->calc.ite),
-				0, 0)));
+				100, 0)));
 }
 
 /* inverted mandelbrot */
@@ -86,7 +76,7 @@ int	ft_calc_tricorn(t_data *data)
 		c.i = tmp;
 		i++;
 	}
-	return (ft_set_rgb(ft_rgb_to_int(255 - 255 * ((data->calc.ite - i)
+	return (ft_invert_rgb(ft_rgb_to_int(255 - 255 * ((data->calc.ite - i)
 					* (data->calc.ite - i)) % (data->calc.ite * data->calc.ite),
 				0, 0)));
 }
@@ -107,7 +97,7 @@ int	ft_calc_bship(t_data *data)
 		c.r = tmp;
 		i++;
 	}
-	return (ft_set_rgb(ft_rgb_to_int(255 - 255 * ((data->calc.ite - i)
+	return (ft_invert_rgb(ft_rgb_to_int(255 - 255 * ((data->calc.ite - i)
 					* (data->calc.ite - i)) % (data->calc.ite * data->calc.ite),
 				0, 0)));
 }

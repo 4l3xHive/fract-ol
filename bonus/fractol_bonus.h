@@ -29,11 +29,12 @@
 # define EXTRA_ARGERROR \
 	"\033[0;31m	./fractol <argv1> fractal <argv2>(int)\
  (<argv3>(double) + <argv4>(double)) \033[0m\n"
+# define CLEAN_EXIT_MSG "\033[0;32m<('') EXITED CLEAN ('')>\033[0m\n"
 # define WIN_X_BTN 17
-# define ERROR 1
-# define SUCCESS 0
 # define TRUE 1
 # define FALSE 0
+# define ERROR 1
+# define SUCCESS 0
 # define X_WIDTH 1000
 # define Y_HEIGHT 1000
 # define MAX_ITERATION 250
@@ -41,6 +42,8 @@
 # define MIN_I -2.0
 # define MAX_R 2.0
 # define MAX_I 2.0
+# define SCROLL_UP 5
+# define SCROLL_DOWN 4
 
 # ifdef __linux__
 #  include "../minilibx-linux/mlx.h"
@@ -49,22 +52,18 @@
 #  define DOWN 65364
 #  define LEFT 65361
 #  define RIGHT 65363
-#  define SCROLL_UP 5
-#  define SCROLL_DOWN 4
 # else
-#  define SCROLL_UP 4
-#  define SCROLL_DOWN 5
 #  define ESC 53
 #  define UP 126
 #  define DOWN 125
 #  define LEFT 123
 #  define RIGHT 124
-#  define PLUS 69
-#  define MINUS 78
+#  define MINUS 69
+#  define PLUS 78
 #  include <mlx.h>
 # endif
 
-typedef enum s_choice
+typedef enum e_choice
 {
 	E_ERR,
 	JULIA,
@@ -79,7 +78,6 @@ typedef struct s_complex
 	double		i;
 }				t_complex;
 
-// MINILIBX DATA
 typedef struct s_lib
 {
 	void		*mlx;
@@ -93,7 +91,7 @@ typedef struct s_lib
 
 }				t_lib;
 
-typedef struct s_calc
+typedef struct s_fractal
 {
 	long		ite;
 	t_complex	min;
@@ -104,33 +102,28 @@ typedef struct s_calc
 	int			size_x;
 	int			size_y;
 
-}				t_calc;
+}				t_fractal;
 
 typedef struct s_data
 {
 	t_lib		lib;
-	t_calc		calc;
+	t_fractal	calc;
 
 }				t_data;
 
-// USERINPUTS CALLBACKS
 int				mouse_events(int event, int x, int y, t_data *data);
 int				keyboard_events(int keycode, t_data *data);
 void			ft_clean_exit(t_data *all_data, const char *error_msg);
 int				ft_close_win(t_data *data);
-// INITS
 void			ft_init_lib_mlx(t_data *all_data);
 t_complex		ft_init_complex(double real, double imaginary);
-void			ft_default_calc_init(t_calc *calc);
-void			ft_args_calc_init(int ac, char **av, t_data *all_data);
-// REFRESH
+void			ft_default_calc_init(t_fractal *calc);
+void			ft_extra_args_init(int ac, char **av, t_data *all_data);
 int				ft_refresh(t_data *all_data);
-// ALGORITHMS / FRACTOLS
 int				ft_calc_julia(t_data *all_data);
 int				ft_calc_mandelbrot(t_data *all_data);
 int				ft_calc_tricorn(t_data *all_data);
 int				ft_calc_bship(t_data *all_data);
-// UTILS
 int				ft_is_num(const char *str);
 int				ft_is_double(const char *n);
 int				ft_rgb_to_int(int r, int g, int b);

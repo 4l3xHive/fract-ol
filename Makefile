@@ -19,8 +19,8 @@ BONUS=			main_bonus.c \
 				inits_bonus.c \
 				utils_bonus.c \
 
-OBJS		=	$(addprefix $(PATH_M), $(MANDATORY:.c=.o))
-OBJS_B		=	$(addprefix $(PATH_B), $(BONUS:.c=.o))
+OBJS_MANDATORY = $(addprefix $(PATH_M), $(MANDATORY:.c=.o))
+OBJS_BONUS = $(addprefix $(PATH_B), $(BONUS:.c=.o))
 
 # Check for OS
 UNAME_S := $(shell uname -s)
@@ -33,24 +33,28 @@ else
     $(error "Unsupported operating system ($(UNAME_S)) == windows :-D")
 endif
 
-all: dependencies $(NAME)
+all: $(NAME)
 
-bonus:  dependencies $(NAME_BONUS)
+bonus: $(NAME_BONUS)
 
-dependencies:
+$(NAME): ${OBJS_MANDATORY}
 ifeq ($(UNAME_S),Linux)
 	@make -C $(LIBRARY_PATH)
 	@make -C ./libft
 else
 	@make -C ./libft
 endif
-	
-$(NAME): ${LIBS} ${OBJS}
-	@cc ${OBJS} ${LIBS} ${CFLAG} -o ${NAME} ${HEADER}
+	@cc ${OBJS_MANDATORY} ${LIBS} ${CFLAG} -o ${NAME} ${HEADER}
 	@printf "\033[0;32m$(NAME) succesfully created.\033[0m\n"
 
-$(NAME_BONUS): ${LIBS} ${OBJS_B}
-	@cc ${OBJS_B} ${LIBS} ${CFLAG} -o ${NAME_BONUS} ${HEADER}
+$(NAME_BONUS): ${OBJS_BONUS}
+ifeq ($(UNAME_S),Linux)
+	@make -C $(LIBRARY_PATH)
+	@make -C ./libft
+else
+	@make -C ./libft
+endif
+	@cc ${OBJS_BONUS} ${LIBS} ${CFLAG} -o ${NAME_BONUS} ${HEADER}
 	@printf "\033[0;32m$(NAME_BONUS) succesfully created.\033[0m\n"
 
 %.o: %.c
@@ -59,10 +63,10 @@ $(NAME_BONUS): ${LIBS} ${OBJS_B}
 clean:
 ifeq ($(UNAME_S),Linux)
 	@make clean -C $(LIBRARY_PATH)
-	@rm -f ${OBJS} ${OBJS_B}
+	@rm -f ${OBJS_MANDATORY} ${OBJS_BONUS}
 	@make clean -C ./libft
 else
-	@rm -f ${OBJS} ${OBJS_B}
+	@rm -f ${OBJS_MANDATORY} ${OBJS_BONUS}
 	@make clean -C ./libft
 endif
 

@@ -12,6 +12,22 @@
 
 #include "fractol_bonus.h"
 
+/**
+ * @brief Exit the program clean when user press X
+ * @param data all data
+ */
+int	ft_close_win(t_data *data)
+{
+	ft_clean_exit(data, NULL);
+	return (SUCCESS);
+}
+
+/**
+ * @brief Converts an rgb 3 int values to a single int
+ * @param r The red value
+ * @param g The green value
+ * @param b The blue value
+ */
 int	ft_rgb_to_int(int r, int g, int b)
 {
 	int	color;
@@ -20,6 +36,10 @@ int	ft_rgb_to_int(int r, int g, int b)
 	return (color);
 }
 
+/**
+ * @brief Checks if the string is a valid double
+ * @param n The string to be checked
+ */
 int	ft_is_double(const char *n)
 {
 	unsigned long	i;
@@ -46,6 +66,10 @@ int	ft_is_double(const char *n)
 	return (TRUE);
 }
 
+/**
+ * @brief Checks if the string is a valid number
+ * @param n The string to be checked
+ */
 int	ft_is_num(const char *n)
 {
 	unsigned long	i;

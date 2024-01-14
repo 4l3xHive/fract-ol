@@ -66,7 +66,7 @@ int	keyboard_events(int keycode, t_data *data)
 
 	if (keycode == ESC)
 		ft_clean_exit(data, NULL);
-	else if (keycode >= RIGHT && keycode <= UP)
+	else if (keycode >= LEFT && keycode <= UP)
 	{
 		ft_calculate_move(keycode, data);
 		ft_refresh(data);

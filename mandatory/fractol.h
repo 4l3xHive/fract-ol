@@ -42,6 +42,8 @@
 # define MAX_I 2.0
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
+#  define MINUS 69
+#  define PLUS 78
 # ifdef __linux__
 #  include "../minilibx-linux/mlx.h"
 #  define ESC 65307
@@ -55,8 +57,6 @@
 #  define DOWN 125
 #  define LEFT 123
 #  define RIGHT 124
-#  define MINUS 69
-#  define PLUS 78
 #  include <mlx.h>
 # endif
 

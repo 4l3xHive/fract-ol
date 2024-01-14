@@ -29,7 +29,7 @@ ifeq ($(UNAME_S),Linux)
     LIBRARY_PATH = ./minilibx-linux
 	ifeq (,$(wildcard ./minilibx-linux))
         $(info Cloning minilibx-linux repository...)
-        $(shell git clone https://github.com/username/minilibx-linux.git)
+        $(shell git clone https://github.com/42Paris/minilibx-linux.git)
     endif
 else ifeq ($(UNAME_S),Darwin)
     CFLAG = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit -lm

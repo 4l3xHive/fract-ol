@@ -27,10 +27,14 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
     CFLAG = -g -L./minilibx-linux -lmlx -lX11 -lXext -Imlx -lm -Wall -Wextra -Werror
     LIBRARY_PATH = ./minilibx-linux
+	ifeq (,$(wildcard ./minilibx-linux))
+        $(info Cloning minilibx-linux repository...)
+        $(shell git clone https://github.com/username/minilibx-linux.git)
+    endif
 else ifeq ($(UNAME_S),Darwin)
     CFLAG = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit -lm
 else
-    $(error "Unsupported operating system ($(UNAME_S)) == windows :-D")
+    $(error "Unsupported operating system ($(UNAME_S))")
 endif
 
 all: $(NAME)

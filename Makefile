@@ -45,7 +45,7 @@ else
 	@make -C ./libft
 endif
 	@cc ${OBJS_MANDATORY} ${LIBS} ${CFLAG} -o ${NAME} ${HEADER}
-	@printf "\033[0;32m$(NAME) succesfully created.\033[0m\n"
+	@printf "\033[0;32m$(NAME) succesfully created🌀🌌🌀.\033[0m\n"
 
 $(NAME_BONUS): ${OBJS_BONUS}
 ifeq ($(UNAME_S),Linux)
@@ -55,7 +55,7 @@ else
 	@make -C ./libft
 endif
 	@cc ${OBJS_BONUS} ${LIBS} ${CFLAG} -o ${NAME_BONUS} ${HEADER}
-	@printf "\033[0;32m$(NAME_BONUS) succesfully created.\033[0m\n"
+	@printf "\033[0;32m$(NAME_BONUS) succesfully created🌀🌌🌀.\033[0m\n"
 
 %.o: %.c
 	@cc -Wall -Wextra -Werror -c $< -o $@ ${HEADER}

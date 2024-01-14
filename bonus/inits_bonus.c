@@ -12,8 +12,11 @@
 
 #include "fractol_bonus.h"
 
-/*Default inits for maths */
-void	ft_default_calc_init(t_calc *calc)
+/**
+ * @brief Inits the default values for the fractal
+ * @param calc The struct containing the fractal values
+ */
+void	ft_default_calc_init(t_fractal *calc)
 {
 	calc->size_x = X_WIDTH;
 	calc->size_y = Y_HEIGHT;
@@ -24,8 +27,13 @@ void	ft_default_calc_init(t_calc *calc)
 	calc->k = ft_init_complex(-0.4, 0.6);
 }
 
-/*Inits if arguments given*/
-void	ft_args_calc_init(int ac, char **av, t_data *all_data)
+/**
+ * @brief Inits the fractal values from the arguments
+ * @param ac The argument count
+ * @param av The argument vector
+ * @param all_data The struct containing all the data
+ */
+void	ft_extra_args_init(int ac, char **av, t_data *all_data)
 {
 	if (ft_is_num(av[2]) == FALSE)
 		ft_clean_exit(all_data, ARGERROR EXTRA_ARGERROR);
@@ -34,8 +42,7 @@ void	ft_args_calc_init(int ac, char **av, t_data *all_data)
 		all_data->calc.ite = 1;
 	if (ac == 4)
 		ft_clean_exit(all_data, ARGERROR EXTRA_ARGERROR);
-	if (ac >= 5 && (ft_is_double(av[3]) == FALSE
-			|| ft_is_double(av[4]) == FALSE))
+	if (ac >= 5 && (!ft_is_double(av[3]) || !ft_is_double(av[4])))
 		ft_clean_exit(all_data, ARGERROR EXTRA_ARGERROR);
 	if (ac >= 5)
 	{
@@ -44,7 +51,11 @@ void	ft_args_calc_init(int ac, char **av, t_data *all_data)
 	}
 }
 
-/* Init the complex numbers */
+/**
+ * @brief Inits a complex number
+ * @param real The real part of the complex number
+ * @param imaginary The imaginary part of the complex number
+ */
 t_complex	ft_init_complex(double real, double imaginary)
 {
 	t_complex	c;
@@ -54,7 +65,10 @@ t_complex	ft_init_complex(double real, double imaginary)
 	return (c);
 }
 
-/* Init the mlx library & callback hooks */
+/**
+ * @brief Inits the mlx library
+ * @param data The struct containing all the data
+ */
 void	ft_init_lib_mlx(t_data *data)
 {
 	data->lib.mlx = mlx_init();

@@ -29,9 +29,22 @@ int	ft_close_win(t_data *data)
  */
 int	keyboard_events(int keycode, t_data *data)
 {
+	double	zoom;
+
 	if (keycode == ESC)
 		ft_clean_exit(data, NULL);
-	ft_refresh(data);
+	else if (keycode == MINUS || keycode == PLUS)
+	{
+		if (keycode == MINUS)
+			zoom = 0.70;
+		else
+			zoom = 1.30;
+		data->calc.min.r *= zoom;
+		data->calc.min.i *= zoom;
+		data->calc.max.r *= zoom;
+		data->calc.max.i *= zoom;
+		ft_refresh(data);
+	}
 	return (SUCCESS);
 }
 

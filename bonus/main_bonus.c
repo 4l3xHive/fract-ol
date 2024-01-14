@@ -12,6 +12,11 @@
 
 #include "fractol_bonus.h"
 
+/**
+ * @brief Cleans up the program and exits
+ * @param all_data The struct containing all the data
+ * @param error_msg The error message to be printed
+ */
 void	ft_clean_exit(t_data *all_data, const char *error_msg)
 {
 	if (error_msg)
@@ -20,7 +25,7 @@ void	ft_clean_exit(t_data *all_data, const char *error_msg)
 		exit(EXIT_FAILURE);
 	}
 	else
-		ft_printf("\033[0;32m<('') EXITED CLEAN ('')>\033[0m\n");
+		ft_printf(CLEAN_EXIT_MSG);
 	if (all_data)
 	{
 		if (all_data->lib.img)
@@ -33,7 +38,7 @@ void	ft_clean_exit(t_data *all_data, const char *error_msg)
 	exit(0);
 }
 
-static void	ft_get_args(int ac, char **av, t_data *all_data)
+static void	ft_handle_args(int ac, char **av, t_data *all_data)
 {
 	if (ac < 2)
 		ft_clean_exit(NULL, ARGERROR);
@@ -49,7 +54,7 @@ static void	ft_get_args(int ac, char **av, t_data *all_data)
 		ft_clean_exit(NULL, ARGERROR EXTRA_ARGERROR);
 	ft_default_calc_init(&all_data->calc);
 	if (ac > 2)
-		ft_args_calc_init(ac, av, all_data);
+		ft_extra_args_init(ac, av, all_data);
 }
 
 int	main(int ac, char **av)
@@ -57,7 +62,7 @@ int	main(int ac, char **av)
 	t_data	all_data;
 
 	ft_memset(&all_data, 0, sizeof(t_data));
-	ft_get_args(ac, av, &all_data);
+	ft_handle_args(ac, av, &all_data);
 	ft_init_lib_mlx(&all_data);
 	ft_refresh(&all_data);
 	mlx_loop(all_data.lib.mlx);

@@ -12,7 +12,12 @@
 
 #include "fractol.h"
 
-// ALL COLOR CHANNELS (R G B A)
+/**
+ * @brief Extracts all color channels from an int and stores them in the addr
+ * @param lib The struct containing the mlx data
+ * @param color The color to be extracted
+ * @param index The index of the addr
+ */
 static void	ft_extract_rgb(t_lib *lib, int color, int index)
 {
 	lib->addr[index] = color >> 16 & 0xFF;
@@ -53,6 +58,10 @@ static int	draw_fractal(t_data *data)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Refreshes the window
+ * @param data all data
+ */
 int	ft_refresh(t_data *data)
 {
 	data->calc.factor = ft_init_complex((data->calc.max.r - data->calc.min.r)

@@ -36,14 +36,14 @@
 # define X_WIDTH 1000
 # define Y_HEIGHT 1000
 # define MAX_ITERATION 250
-# define MIN_R -2.0
-# define MIN_I -2.0
-# define MAX_R 2.0
-# define MAX_I 2.0
+# define MIN_R -2
+# define MIN_I -2
+# define MAX_R 2
+# define MAX_I 2
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
-#  define MINUS 69
-#  define PLUS 78
+# define MINUS 69
+# define PLUS 78
 # ifdef __linux__
 #  include "../minilibx-linux/mlx.h"
 #  define ESC 65307

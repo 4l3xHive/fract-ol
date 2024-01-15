@@ -33,7 +33,7 @@ int	ft_calc_julia(t_data *data)
 	}
 	return (ft_invert_rgb(ft_rgb_to_int(255 - 50 * ((data->calc.ite - i)
 					* (data->calc.ite - i)) % (data->calc.ite * data->calc.ite),
-				220, 0)));
+				170, 20)));
 }
 
 int	ft_calc_mandelbrot(t_data *data)

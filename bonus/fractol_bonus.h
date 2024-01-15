@@ -38,10 +38,10 @@
 # define X_WIDTH 1000
 # define Y_HEIGHT 1000
 # define MAX_ITERATION 250
-# define MIN_R -2.0
-# define MIN_I -2.0
-# define MAX_R 2.0
-# define MAX_I 2.0
+# define MIN_R -2
+# define MIN_I -2
+# define MAX_R 2
+# define MAX_I 2
 # define SCROLL_UP 5
 # define SCROLL_DOWN 4
 # define MINUS 69
@@ -110,6 +110,7 @@ typedef struct s_data
 
 }				t_data;
 
+int				ft_close_win(t_data *data);
 int				mouse_events(int event, int x, int y, t_data *data);
 int				keyboard_events(int keycode, t_data *data);
 void			ft_clean_exit(t_data *all_data, const char *error_msg);

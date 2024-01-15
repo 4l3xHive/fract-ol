@@ -86,4 +86,5 @@ void	ft_init_lib_mlx(t_data *data)
 		ft_clean_exit(data, "Failed to init mlx!");
 	mlx_key_hook(data->lib.win, keyboard_events, data);
 	mlx_mouse_hook(data->lib.win, mouse_events, data);
+	mlx_hook(data->lib.win, WIN_X_BTN, 0, ft_close_win, data);
 }

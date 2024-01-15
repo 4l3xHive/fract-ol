@@ -22,8 +22,7 @@ void	ft_default_calc_init(t_fractal *calc)
 	calc->size_y = Y_HEIGHT;
 	calc->ite = MAX_ITERATION;
 	calc->min = ft_init_complex(MIN_R, MIN_I);
-	calc->max = ft_init_complex(MAX_R, MIN_I + (MAX_R - MIN_R) * calc->size_x
-			/ calc->size_y);
+	calc->max = ft_init_complex(MAX_R, MIN_I + 4);
 	calc->k = ft_init_complex(-0.4, 0.6);
 }
 

@@ -45,13 +45,13 @@ static void	ft_calculate_move(int keycode, t_data *data)
 	}
 	else if (keycode == DOWN)
 	{
-		data->calc.min.i += inter;
-		data->calc.max.i += inter;
+		data->calc.min.i -= inter;
+		data->calc.max.i -= inter;
 	}
 	else if (keycode == UP)
 	{
-		data->calc.min.i -= inter;
-		data->calc.max.i -= inter;
+		data->calc.min.i += inter;
+		data->calc.max.i += inter;
 	}
 }
 

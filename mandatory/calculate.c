@@ -21,6 +21,7 @@ int	ft_calc_julia(t_data *data)
 {
 	t_complex	z;
 	int			i;
+	int			depth_color;
 
 	z.r = data->calc.c.r;
 	z.i = data->calc.c.i;
@@ -31,8 +32,10 @@ int	ft_calc_julia(t_data *data)
 				* z.i + data->calc.k.i);
 		i++;
 	}
-	return (ft_invert_rgb(ft_rgb_to_int(((data->calc.ite - i) * (data->calc.ite
-						- i)) % (data->calc.ite * data->calc.ite), 170, 20)));
+	depth_color = ((data->calc.ite - i) * (data->calc.ite - i))
+		% (data->calc.ite * data->calc.ite);
+	return (ft_invert_rgb(ft_rgb_to_int(depth_color, depth_color,
+				depth_color)));
 }
 
 int	ft_calc_mandelbrot(t_data *data)
@@ -40,6 +43,7 @@ int	ft_calc_mandelbrot(t_data *data)
 	t_complex	c;
 	double		tmp;
 	int			i;
+	int			depth_color;
 
 	c.r = data->calc.c.r;
 	c.i = data->calc.c.i;
@@ -51,7 +55,8 @@ int	ft_calc_mandelbrot(t_data *data)
 		c.r = tmp;
 		i++;
 	}
-	return (ft_invert_rgb(ft_rgb_to_int(255 - 255 * ((data->calc.ite - i)
-					* (data->calc.ite - i)) % (data->calc.ite * data->calc.ite),
-				0, 0)));
+	depth_color = ((data->calc.ite - i) * (data->calc.ite - i))
+		% (data->calc.ite * data->calc.ite);
+	return (ft_invert_rgb(ft_rgb_to_int(depth_color, depth_color,
+				depth_color)));
 }

@@ -27,7 +27,7 @@ void	ft_default_calc_init(t_fractal *calc)
 }
 
 /**
- * @brief Inits the fractal values from the arguments
+ * @brief Inits the fractal iterations & for julia the constant k
  * @param ac The argument count
  * @param av The argument vector
  * @param all_data The struct containing all the data

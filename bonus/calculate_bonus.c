@@ -80,7 +80,7 @@ int	ft_calc_tricorn(t_data *data)
 		i++;
 	}
 	depth_color = ((data->calc.ite - i) * (data->calc.ite - i));
-	return (ft_invert_rgb(ft_rgb_to_int(depth_color, depth_color,
+	return (ft_invert_rgb(ft_rgb_to_int(depth_color, depth_color - 100,
 				depth_color)));
 }
 

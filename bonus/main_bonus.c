@@ -26,12 +26,8 @@ void	ft_clean_exit(t_data *all_data, const char *error_msg)
 	}
 	if (all_data)
 	{
-		if (all_data->lib.img)
-			mlx_destroy_image(all_data->lib.mlx, all_data->lib.img);
-		if (all_data->lib.win)
-			mlx_destroy_window(all_data->lib.mlx, all_data->lib.win);
-		if (all_data->lib.mlx)
-			free(all_data->lib.mlx);
+		mlx_destroy_image(all_data->lib.mlx, all_data->lib.img);
+		mlx_destroy_window(all_data->lib.mlx, all_data->lib.win);
 	}
 	ft_printf(CLEAN_EXIT_MSG);
 	exit(EXIT_SUCCESS);

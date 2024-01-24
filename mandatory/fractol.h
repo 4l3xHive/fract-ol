@@ -19,6 +19,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+# define CONSTERROR \
+	"\033[0;31mThe The values for Julia constant must be between \
+ -2 and 2!\033[0m\n"
 # define ARGERROR \
 	"\033[0;31m\
 	First argument must be valid fractal!\n\

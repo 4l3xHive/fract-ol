@@ -44,8 +44,11 @@ void	ft_extra_args_init(int ac, char **av, t_data *all_data)
 	if (ac >= 5 && (ft_is_double(av[3]) == FALSE
 			|| ft_is_double(av[4]) == FALSE))
 		ft_clean_exit(all_data, ARGERROR EXTRA_ARGERROR);
-	all_data->calc.k.r = ft_atof(av[3]);
-	all_data->calc.k.i = ft_atof(av[4]);
+	if (ac >= 5)
+	{
+		all_data->calc.k.r = ft_atof(av[3]);
+		all_data->calc.k.i = ft_atof(av[4]);
+	}
 	if (ac >= 5 && (all_data->calc.k.r < -2 || all_data->calc.k.r > 2
 			|| all_data->calc.k.i < -2 || all_data->calc.k.i > 2))
 		ft_clean_exit(all_data, CONSTERROR);
